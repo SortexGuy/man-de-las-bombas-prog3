@@ -55,7 +55,7 @@ public class Enemy extends Character {
         }).start();
     }
 
-    //no se porque lo con este metodo se mueve mejor 
+    //no se porque pero llamando este metodo se mueve mejor el enemy xd
     public void update(double deltaTime) {
         move();
     }
