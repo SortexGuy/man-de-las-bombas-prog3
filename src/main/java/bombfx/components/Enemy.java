@@ -7,15 +7,17 @@ import javafx.scene.paint.Color;
 
 public class Enemy extends Character {
     private Random random;
+    private double changeDirTimer;
 
     public Enemy(Point2D pos) {
         super(pos);
         random = new Random();
         speed = 800;
-        startRandomMovement();
+        changeDirTimer = 1.5;
+        //startRandomMovement();
     }
 
-    private void startRandomMovement() {
+    /*private void startRandomMovement() {
         new Thread(() -> {
             while (true) {
                 int direction = random.nextInt(4);
@@ -58,17 +60,46 @@ public class Enemy extends Character {
                 }
             }
         }).start();
-    }
+    }*/
 
-    // no se porque pero llamando este metodo se mueve mejor el enemy xd
     public void update(double deltaTime) {
+        // Reducir el temporizador de cambio de dirección
+        changeDirTimer -= deltaTime;
+
+        // Si el temporizador llega a cero o menos, cambiar la dirección
+        if (changeDirTimer <= 0) {
+            changeDirection();
+            // Restablecer el temporizador de cambio de dirección
+            changeDirTimer = 1.5; // Reiniciar el temporizador a 1.5 segundos
+        }
+
+        // Mover el enemigo en la dirección actual
         Point2D newPos = pos.add(dir.multiply(speed * deltaTime));
         // Verificar si la nueva posición está dentro del área del juego
         if (isValidMove(newPos)) {
             pos = newPos;
         } else {
+            // Si la nueva posición no es válida, invertir la dirección
             dir = new Point2D(-dir.getX(), -dir.getY());
-            // dir = dir.multiply(-1);
+        }
+    }
+
+    private void changeDirection() {
+        // Elegir una dirección aleatoria entre arriba, abajo, izquierda y derecha
+        int direction = random.nextInt(4);
+        switch (direction) {
+            case 0: // Arriba
+                dir = new Point2D(0, -1);
+                break;
+            case 1: // Abajo
+                dir = new Point2D(0, 1);
+                break;
+            case 2: // Izquierda
+                dir = new Point2D(-1, 0);
+                break;
+            case 3: // Derecha
+                dir = new Point2D(1, 0);
+                break;
         }
     }
 
@@ -77,7 +108,7 @@ public class Enemy extends Character {
         gContext.fillRect(pos.getX(), pos.getY(), SIZE, SIZE);
     }
 
-    private void move() {
+    /*private void move() {
         Point2D newPos = pos.add(dir.multiply(speed / 1000.0));
         // Verificar si la nueva posición está dentro del área del juego
         if (isValidMove(newPos)) {
@@ -86,7 +117,7 @@ public class Enemy extends Character {
             dir = new Point2D(-dir.getX(), -dir.getY());
             // dir = dir.multiply(-1);
         }
-    }
+    }*/
 
     private boolean isValidMove(Point2D newPos) {
         // le falta todavia
