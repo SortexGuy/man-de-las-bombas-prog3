@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 
 import bombfx.App;
 import bombfx.components.Player;
+import bombfx.components.Enemy; //cambio joey
 import bombfx.engine.GameLoop;
 
 public class MainGameController implements Initializable {
@@ -21,6 +22,7 @@ public class MainGameController implements Initializable {
 
     private GameLoop gameLoop;
     private Player player;
+    private Enemy enemy; //cambio joey
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -34,6 +36,7 @@ public class MainGameController implements Initializable {
         };
 
         player = new Player(new Point2D(46, 46));
+        enemy = new Enemy(new Point2D(200, 200)); //cambio joey
         // Input events
         App.getScene().addEventHandler(KeyEvent.KEY_PRESSED, e -> { player.handleKeyPress(e); });
         App.getScene().addEventHandler(KeyEvent.KEY_RELEASED, e -> { player.handleKeyRelease(e); });
@@ -42,6 +45,7 @@ public class MainGameController implements Initializable {
 
     private void update(double deltaTime) {
         player.update(deltaTime);
+        enemy.update(deltaTime); //cambio joey
     }
 
     private void draw(double width, double height) {
@@ -49,5 +53,6 @@ public class MainGameController implements Initializable {
         gContext.fillRect(0, 0, width, height);
 
         player.draw(gContext);
+        enemy.draw(gContext);
     }
 }
