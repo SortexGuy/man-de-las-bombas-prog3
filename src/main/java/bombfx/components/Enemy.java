@@ -63,17 +63,13 @@ public class Enemy extends Character {
     }*/
 
     public void update(double deltaTime) {
-        // Reducir el temporizador de cambio de dirección
         changeDirTimer -= deltaTime;
 
-        // Si el temporizador llega a cero o menos, cambiar la dirección
         if (changeDirTimer <= 0) {
             changeDirection();
-            // Restablecer el temporizador de cambio de dirección
-            changeDirTimer = 1.5; // Reiniciar el temporizador a 1.5 segundos
+            changeDirTimer = 1.5; 
         }
 
-        // Mover el enemigo en la dirección actual
         Point2D newPos = pos.add(dir.multiply(speed * deltaTime));
         // Verificar si la nueva posición está dentro del área del juego
         if (isValidMove(newPos)) {
@@ -85,7 +81,6 @@ public class Enemy extends Character {
     }
 
     private void changeDirection() {
-        // Elegir una dirección aleatoria entre arriba, abajo, izquierda y derecha
         int direction = random.nextInt(4);
         switch (direction) {
             case 0: // Arriba
