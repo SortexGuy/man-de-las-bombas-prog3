@@ -1,8 +1,9 @@
 package bombfx.components;
 
 import javafx.geometry.Point2D;
+import javafx.scene.canvas.GraphicsContext;
 
-public abstract class Character {
+public abstract class Character extends Object {
     protected final int SIZE = 28;
     protected int speed = 200;
     protected Point2D facing = new Point2D(0, 1);
@@ -17,4 +18,8 @@ public abstract class Character {
         this.pos = pos.subtract(SIZE / 2, SIZE / 2);
         this.dir = dir;
     }
+
+    public abstract void update(double delta);
+
+    public abstract void draw(GraphicsContext gContext);
 }

@@ -5,19 +5,23 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import bombfx.engine.InputHandler;
 import bombfx.engine.InputHandler.InputOrder;
 
 public class Player extends Character {
+    private Level level;
     private InputHandler inputHandler;
     private int lives = 3;
 
-    public Player(Point2D pos) {
+    public Player(Point2D pos, Level level) {
         super(pos);
-        inputHandler = new InputHandler();
+        this.level = level;
+        this.inputHandler = new InputHandler();
     }
 
+    @Override
     public void update(double delta) {
         boolean up = inputHandler.getInput(InputOrder.UP).pressed;
         boolean down = inputHandler.getInput(InputOrder.DOWN).pressed;
@@ -36,8 +40,14 @@ public class Player extends Character {
         if (dir.getX() == 0 || dir.getY() == 0) {
             facing = dir;
         }
+
+        // Point2D facingPoint = facing.multiply(SIZE / 2.0).add(pos);
+        Rectangle collRect = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
+        vel = level.collideAndMove(collRect);
+        pos = pos.add(vel.multiply(delta * speed));
     }
 
+    @Override
     public void draw(GraphicsContext gContext) {
         Color c = Color.ORANGE;
         gContext.setFill(c);
