@@ -11,6 +11,7 @@ public class Level extends Object {
     private ArrayList<Cell> cells;
 
     public Level() {
+        this.cells = new ArrayList<Cell>();
         for (int i = 0; i < GRID_NUM; i++) {
             for (int j = 0; j < GRID_NUM; j++) {
                 Cell cell;
@@ -36,7 +37,13 @@ public class Level extends Object {
     }
 
     public boolean collide(Point2D point) {
-        return false;
+        boolean ret = false;
+        // for (Cell cell : cells) {
+        // boolean ret = cell.collide(point);
+        // if (!ret)
+        // continue;
+        // }
+        return ret;
     }
 
     public Point2D collideAndMove(Rectangle rect) {

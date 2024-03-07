@@ -2,7 +2,6 @@ package bombfx.components;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -27,7 +26,7 @@ public class Player extends Character {
         boolean down = inputHandler.getInput(InputOrder.DOWN).pressed;
         boolean left = inputHandler.getInput(InputOrder.LEFT).pressed;
         boolean right = inputHandler.getInput(InputOrder.RIGHT).pressed;
-        // boolean bomb = inputHandler.getInput(InputOrder.BOMB).pressed;
+        boolean bomb = inputHandler.getInput(InputOrder.BOMB).pressed;
 
         // Movement
         double x = (left) ? -1.0 : (right) ? 1.0 : 0;
@@ -43,8 +42,10 @@ public class Player extends Character {
 
         // Point2D facingPoint = facing.multiply(SIZE / 2.0).add(pos);
         Rectangle collRect = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
+
         vel = level.collideAndMove(collRect);
-        pos = pos.add(vel.multiply(delta * speed));
+        if (vel != Point2D.ZERO)
+            pos = pos.subtract(vel.normalize().multiply(delta * speed));
     }
 
     @Override

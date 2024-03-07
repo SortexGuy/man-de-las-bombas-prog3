@@ -4,6 +4,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class WallCell extends Cell {
     public WallCell(Point2D pos) {
@@ -30,7 +31,6 @@ public class WallCell extends Cell {
 
     @Override
     public boolean collide(Rectangle rect) {
-        // this.rect
-        return false;
+        return overlap(rect);
     }
 }

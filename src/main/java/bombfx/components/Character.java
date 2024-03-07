@@ -4,7 +4,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 
 public abstract class Character extends Object {
-    protected final int SIZE = 28;
+    protected final int SIZE = 24;
     protected int speed = 200;
     protected Point2D facing = new Point2D(0, 1);
     protected Point2D pos;

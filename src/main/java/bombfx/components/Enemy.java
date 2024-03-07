@@ -10,8 +10,8 @@ public class Enemy extends Character {
 
     public Enemy(Point2D pos) {
         super(pos);
-        random = new Random();
-        speed = 800;
+        this.random = new Random();
+        speed = 100;
         startRandomMovement();
     }
 
