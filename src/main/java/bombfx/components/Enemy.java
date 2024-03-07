@@ -4,16 +4,19 @@ import java.util.Random;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class Enemy extends Character {
     private Random random;
     private double changeDirTimer;
+    private Level level;
 
-    public Enemy(Point2D pos) {
+    public Enemy(Point2D pos, Level level) {
         super(pos);
         this.random = new Random();
         speed = 100;
         changeDirTimer = 1.5;
+        this.level = level;
     }
 
     public void update(double deltaTime) {
@@ -28,13 +31,23 @@ public class Enemy extends Character {
         }
 
         Point2D newPos = pos.add(dir.multiply(speed * deltaTime));
+        Rectangle collRect = new Rectangle(newPos.getX(), newPos.getY(), SIZE, SIZE);
+
+        Point2D vel = level.collideAndMove(collRect);
+        if (vel != Point2D.ZERO) {
+            changeDirection();
+        } else {
+            pos = newPos;
+        }
+
+
         // Verificar si la nueva posición está dentro del área del juego
-        if (isValidMove(newPos)) {
+        /*if (isValidMove(newPos)) {
             pos = newPos;
         } else {
             // Si la nueva posición no es válida, invertir la dirección
             dir = new Point2D(-dir.getX(), -dir.getY());
-        }
+        }*/
     }
 
     private void changeDirection() {
