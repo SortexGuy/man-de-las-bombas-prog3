@@ -62,7 +62,7 @@ public class Level extends Object {
 
 
     public boolean isPlayerNear(Point2D pos) {
-        Point2D playerPos = new Point2D(46, 46);
+        Point2D playerPos = new Point2D(46, 46);// player.getPos();
         double distanceThreshold = GRID_SIZE; 
     
         double distance = pos.distance(playerPos);
