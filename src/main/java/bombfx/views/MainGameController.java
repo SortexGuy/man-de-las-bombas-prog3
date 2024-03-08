@@ -18,7 +18,7 @@ import bombfx.components.Player;
 import bombfx.engine.GameLoop;
 
 public class MainGameController implements Initializable {
-    @FXML                      // fx:id="gameCanvas"
+    @FXML // fx:id="gameCanvas"
     private Canvas gameCanvas; // Value injected by FXMLLoader
     private GraphicsContext gContext;
 
@@ -47,13 +47,15 @@ public class MainGameController implements Initializable {
                 // Generar una posición aleatoria dentro de las celdas válidas
                 double x = Math.random() * 416;
                 double y = Math.random() * 416;
-                
+
                 // Ajustar las coordenadas para que estén centradas en la celda
-                double cellX = Math.floor(x / level.getGridSize()) * level.getGridSize() + level.getGridSize() / 2;
-                double cellY = Math.floor(y / level.getGridSize()) * level.getGridSize() + level.getGridSize() / 2;
-                
+                double cellX = Math.floor(x / level.getGridSize()) * level.getGridSize()
+                        + level.getGridSize() / 2;
+                double cellY = Math.floor(y / level.getGridSize()) * level.getGridSize()
+                        + level.getGridSize() / 2;
+
                 enemyPos = new Point2D(cellX, cellY);
-            } while (!level.isEmptyCell(enemyPos) || level.isPlayerNear(enemyPos) );
+            } while (!level.isEmptyCell(enemyPos) || level.isPlayerNear(enemyPos));
             enemies.add(new Enemy(enemyPos, level, player));
         }
 
@@ -61,8 +63,12 @@ public class MainGameController implements Initializable {
         level.setEnemies(enemies);
 
         // Input events
-        App.getScene().addEventHandler(KeyEvent.KEY_PRESSED, e -> { player.handleKeyPress(e); });
-        App.getScene().addEventHandler(KeyEvent.KEY_RELEASED, e -> { player.handleKeyRelease(e); });
+        App.getScene().addEventHandler(KeyEvent.KEY_PRESSED, e -> {
+            player.handleKeyPress(e);
+        });
+        App.getScene().addEventHandler(KeyEvent.KEY_RELEASED, e -> {
+            player.handleKeyRelease(e);
+        });
         gameLoop.start();
     }
 
@@ -70,6 +76,18 @@ public class MainGameController implements Initializable {
         level.update(deltaTime);
         player.update(deltaTime);
         enemies.forEach(enemy -> enemy.update(deltaTime));
+
+        if (enemies.isEmpty()) {
+            System.out.println("YOU WIN!");
+            // Mostrar panel de Victoria
+            gameLoop.stop();
+        }
+
+        if (player.isDead()) {
+            System.out.println("YOU LOSE!!!");
+            // Mostrar panel de Derrota
+            gameLoop.stop();
+        }
     }
 
     private void draw(double width, double height) {

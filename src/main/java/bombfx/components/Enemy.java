@@ -7,10 +7,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Enemy extends Character {
-    private Random random;
-    private double changeDirTimer;
-    private Level level;
     private Player player;
+    private Level level;
+    private Random random;
+    private Rectangle collRect;
+    private double changeDirTimer;
 
     public Enemy(Point2D pos, Level level, Player player) {
         super(pos);
@@ -24,10 +25,7 @@ public class Enemy extends Character {
     public void update(double deltaTime) {
         changeDirTimer -= deltaTime;
 
-        if (isTouchingPlayer()) {
-            player.handleDamage();
-        }
-
+        // Movement
         if (dir == null)
             dir = Point2D.ZERO;
 
@@ -37,7 +35,7 @@ public class Enemy extends Character {
         }
 
         Point2D newPos = pos.add(dir.multiply(speed * deltaTime));
-        Rectangle collRect = new Rectangle(newPos.getX(), newPos.getY(), SIZE, SIZE);
+        collRect = new Rectangle(newPos.getX(), newPos.getY(), SIZE, SIZE);
 
         Point2D vel = level.collideAndMove(collRect);
         if (vel != Point2D.ZERO) {
@@ -45,6 +43,23 @@ public class Enemy extends Character {
         } else {
             pos = newPos;
         }
+
+        // Collisions
+        if (isTouchingPlayer()) {
+            player.handleDamage();
+        }
+    }
+
+    public void draw(GraphicsContext gContext) {
+        Color c = Color.RED;
+        gContext.setFill(c);
+        gContext.beginPath();
+        gContext.rect(pos.getX(), pos.getY(), SIZE, SIZE);
+        gContext.closePath();
+        gContext.fill();
+        gContext.setStroke(Color.BLACK);
+        gContext.setLineWidth(1);
+        gContext.stroke();
     }
 
     private void changeDirection() {
@@ -68,39 +83,13 @@ public class Enemy extends Character {
         }
     }
 
-    public void draw(GraphicsContext gContext) {
-        Color c = Color.RED;
-        gContext.setFill(c);
-        gContext.beginPath();
-        gContext.rect(pos.getX(), pos.getY(), SIZE, SIZE);
-        gContext.closePath();
-        gContext.fill();
-        gContext.setStroke(Color.BLACK);
-        gContext.setLineWidth(1);
-        gContext.stroke();
-    }
-
     private boolean isTouchingPlayer() {
         // Calcular el área de colisión del enemigo
-        Rectangle enemyBounds = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
-
-        Rectangle playerBounds = player.getBounds();
-
-        return enemyBounds.getBoundsInParent().intersects(playerBounds.getBoundsInParent());
+        Rectangle playerBounds = player.getCollRect();
+        return collRect.getBoundsInParent().intersects(playerBounds.getBoundsInParent());
     }
 
-    // private boolean isValidMove(Point2D newPos) {
-    // // le falta todavia
-    // return true; // Devuelve true si la nueva posición es válida
-    // }
-
-    public void checkCollisions() {
+    public Rectangle getCollRect() {
+        return collRect;
     }
-
-    /*
-     * public boolean checkPlayerCollision(Player player) {
-     * double distance = pos.distance(player.getPosition());
-     * return distance < SIZE;
-     * }
-     */
 }

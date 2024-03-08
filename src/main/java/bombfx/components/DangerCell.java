@@ -23,6 +23,19 @@ public class DangerCell extends EmptyCell {
     @Override
     public void update(double delta) {
         timeLeft -= delta;
+
+        if (this.overlap(player.getCollRect())) {
+            player.handleDamage();
+        }
+
+        for (int i = 0; i < enemies.size(); i++) {
+            Enemy e = enemies.get(i);
+            if (!this.overlap(e.getCollRect()))
+                continue;
+
+            enemies.remove(i);
+        }
+
         if (timeLeft <= 0) {
             Point2D position = getPos().add(SIZE / 2, SIZE / 2);
             level.removeDanger(position);
@@ -53,6 +66,6 @@ public class DangerCell extends EmptyCell {
 
     @Override
     public boolean collide(Rectangle rect) {
-        return overlap(rect);
+        return false;
     }
 }

@@ -8,7 +8,7 @@ import javafx.scene.shape.Rectangle;
 public class Level extends Object {
     private final int GRID_SIZE = 32;
     private final int GRID_NUM = 13;
-    private ArrayList<Cell> cells;//
+    private ArrayList<Cell> cells; //
     private Player player;
     private ArrayList<Enemy> enemies;
 
@@ -41,11 +41,6 @@ public class Level extends Object {
 
     public boolean collide(Point2D point) {
         boolean ret = false;
-        // for (Cell cell : cells) {
-        // boolean ret = cell.collide(point);
-        // if (!ret)
-        // continue;
-        // }
         return ret;
     }
 
@@ -70,16 +65,19 @@ public class Level extends Object {
         return distance < distanceThreshold;
     }
 
-    public void addBomb(Point2D position) {
+    public boolean addBomb(Point2D position) {
         for (int i = 0; i < cells.size(); i++) {
             Cell cell = cells.get(i);
             if (!cell.contains(position))
                 continue;
+            if (cell instanceof WallCell || cell instanceof BlockCell)
+                return false;
 
             cell = new BombCell(cell.getPos(), player, this);
             cells.set(i, cell);
             break;
         }
+        return true;
     }
 
     public void removeBomb(Point2D position, int times, Point2D dir) {
@@ -112,6 +110,18 @@ public class Level extends Object {
         }
     }
 
+    public void removeDanger(Point2D position) {
+        for (int i = 0; i < cells.size(); i++) {
+            Cell cell = cells.get(i);
+            if (!cell.contains(position))
+                continue;
+
+            cell = new EmptyCell(cell.getPos());
+            cells.set(i, cell);
+            break;
+        }
+    }
+
     public boolean isEmptyCell(Point2D pos) {
         for (Cell cell : cells) {
             if (cell instanceof EmptyCell && cell.contains(pos)) {
@@ -123,18 +133,6 @@ public class Level extends Object {
 
     public int getGridSize() {
         return GRID_SIZE;
-    }
-
-    public void removeDanger(Point2D position) {
-        for (int i = 0; i < cells.size(); i++) {
-            Cell cell = cells.get(i);
-            if (!cell.contains(position))
-                continue;
-
-            cell = new EmptyCell(cell.getPos());
-            cells.set(i, cell);
-            break;
-        }
     }
 
     public void setPlayer(Player player) {
