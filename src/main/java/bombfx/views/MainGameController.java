@@ -81,12 +81,14 @@ public class MainGameController implements Initializable {
             System.out.println("YOU WIN!");
             // Mostrar panel de Victoria
             gameLoop.stop();
+            App.setRoot("views/MainMenuUI");
         }
 
         if (player.isDead()) {
             System.out.println("YOU LOSE!!!");
             // Mostrar panel de Derrota
             gameLoop.stop();
+            App.setRoot("views/MainMenuUI");
         }
     }
 

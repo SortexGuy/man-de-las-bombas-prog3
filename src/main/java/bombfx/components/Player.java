@@ -74,6 +74,8 @@ public class Player extends Character {
     @Override
     public void draw(GraphicsContext gContext) {
         Color c = Color.ORANGE;
+        if (invulnerable)
+            c = Color.CYAN;
         gContext.setFill(c);
         gContext.beginPath();
         gContext.rect(pos.getX(), pos.getY(), SIZE, SIZE);

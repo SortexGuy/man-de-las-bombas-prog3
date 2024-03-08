@@ -20,7 +20,7 @@ public class Level extends Object {
                 if (i == 0 || j == 0 || i == GRID_NUM - 1 || j == GRID_NUM - 1
                         || (i % 2 == 0 && j % 2 == 0)) {
                     cell = new WallCell(new Point2D(i * GRID_SIZE, j * GRID_SIZE));
-                } else if (Math.random() < 0.7
+                } else if (Math.random() < 0.55
                         && !isPlayerNear(new Point2D(i * GRID_SIZE, j * GRID_SIZE))) {
                     cell = new BlockCell(new Point2D(i * GRID_SIZE, j * GRID_SIZE));
                 } else {
@@ -88,8 +88,20 @@ public class Level extends Object {
 
             if (i < 0 || cell instanceof WallCell)
                 return;
+            if (cell instanceof BlockCell) {
+                int random = (int) (Math.random() * 6);
+                switch (random) {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        cell = new EmptyCell(cell.getPos());
+                        break;
+                }
+            } else
+                cell = new DangerCell(cell.getPos(), player, enemies, this);
 
-            cell = new DangerCell(cell.getPos(), player, enemies, this);
             cells.set(i, cell);
             break;
         }
