@@ -20,7 +20,7 @@ public class Level extends Object {
                 if (i == 0 || j == 0 || i == GRID_NUM - 1 || j == GRID_NUM - 1
                         || (i % 2 == 0 && j % 2 == 0)) {
                     cell = new WallCell(new Point2D(i * GRID_SIZE, j * GRID_SIZE));
-                } else if (true && !isPlayerNear(new Point2D(i * GRID_SIZE, j * GRID_SIZE))) {
+                } else if (Math.random() < 0.7 && !isPlayerNear(new Point2D(i * GRID_SIZE, j * GRID_SIZE))) {
                     cell = new BlockCell(new Point2D(i * GRID_SIZE, j * GRID_SIZE));
                 } else {
                     cell = new EmptyCell(new Point2D(i * GRID_SIZE, j * GRID_SIZE));
