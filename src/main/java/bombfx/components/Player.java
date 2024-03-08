@@ -13,6 +13,7 @@ public class Player extends Character {
     private Level level;
     private InputHandler inputHandler;
     private int lives = 3;
+    private double bombTimer = 0;
 
     public Player(Point2D pos, Level level) {
         super(pos);
@@ -36,16 +37,23 @@ public class Player extends Character {
         // lastDelta = delta;
         Point2D vel = dir.multiply(delta * speed);
         pos = pos.add(vel);
-        if (dir.getX() == 0 || dir.getY() == 0) {
+        if (dir.getX() == 0 || dir.getY() == 0 && dir != Point2D.ZERO) {
             facing = dir;
         }
 
-        // Point2D facingPoint = facing.multiply(SIZE / 2.0).add(pos);
+        // Wall Collisions
         Rectangle collRect = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
-
         vel = level.collideAndMove(collRect);
         if (vel != Point2D.ZERO)
             pos = pos.subtract(vel.normalize().multiply(delta * speed));
+
+        // Bomb handling
+        Point2D facingPoint = facing.multiply(32).add(pos);
+        bombTimer -= delta;
+        if (bomb && bombTimer <= 0) {
+            level.addBomb(facingPoint);
+            bombTimer = 2.0;
+        }
     }
 
     @Override

@@ -29,7 +29,6 @@ public class EmptyCell extends Cell {
 
     @Override
     public boolean collide(Rectangle rect) {
-        // this.rect
         return false;
     }
 }

@@ -9,6 +9,8 @@ public class Level extends Object {
     private final int GRID_SIZE = 32;
     private final int GRID_NUM = 13;
     private ArrayList<Cell> cells;
+    private Player player;
+    private ArrayList<Enemy> enemies;
 
     public Level() {
         this.cells = new ArrayList<Cell>();
@@ -56,5 +58,37 @@ public class Level extends Object {
             retDir = cell.getPos().subtract(rect.getX(), rect.getY());
         }
         return retDir;
+    }
+
+    public void addBomb(Point2D position) {
+        for (int i = 0; i < cells.size(); i++) {
+            Cell cell = cells.get(i);
+            if (!cell.contains(position))
+                continue;
+
+            cell = new BombCell(cell.getPos(), player, this);
+            cells.set(i, cell);
+            break;
+        }
+    }
+
+    public void removeBomb(Point2D position) {
+        for (int i = 0; i < cells.size(); i++) {
+            Cell cell = cells.get(i);
+            if (!cell.contains(position))
+                continue;
+
+            cell = new EmptyCell(cell.getPos());
+            cells.set(i, cell);
+            break;
+        }
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void setEnemies(ArrayList<Enemy> enemies) {
+        this.enemies = enemies;
     }
 }
