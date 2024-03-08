@@ -14,11 +14,17 @@ public class Player extends Character {
     private InputHandler inputHandler;
     private int lives = 3;
     private double bombTimer = 0;
+    private boolean invulnerable;
+    private double invulnerabilityDuration;
+    private double invulnerabilityTimer;
 
     public Player(Point2D pos, Level level) {
         super(pos);
         this.level = level;
         this.inputHandler = new InputHandler();
+        this.invulnerable = false;
+        this.invulnerabilityDuration = 1.0; 
+        this.invulnerabilityTimer = 0.0;
     }
 
     @Override
@@ -28,6 +34,14 @@ public class Player extends Character {
         boolean left = inputHandler.getInput(InputOrder.LEFT).pressed;
         boolean right = inputHandler.getInput(InputOrder.RIGHT).pressed;
         boolean bomb = inputHandler.getInput(InputOrder.BOMB).pressed;
+
+        // Invulnerability del player
+        if (invulnerable) {
+            invulnerabilityTimer -= delta;
+            if (invulnerabilityTimer <= 0) {
+                invulnerable = false;
+            }
+        }
 
         // Movement
         double x = (left) ? -1.0 : (right) ? 1.0 : 0;
@@ -85,5 +99,19 @@ public class Player extends Character {
 
     public void handleKeyRelease(KeyEvent event) {
         inputHandler.inputReleased(event.getCode());
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
+    }
+
+    public void handleDamage() {
+        if (!invulnerable) {
+            lives--;
+            System.out.println("¡El jugador ha sido golpeado! Vidas restantes: " + lives);
+
+            invulnerable = true;
+            invulnerabilityTimer = invulnerabilityDuration;
+        }
     }
 }
