@@ -8,7 +8,7 @@ import javafx.scene.shape.Rectangle;
 public class Level extends Object {
     private final int GRID_SIZE = 32;
     private final int GRID_NUM = 13;
-    private ArrayList<Cell> cells;
+    private ArrayList<Cell> cells;//
     private Player player;
     private ArrayList<Enemy> enemies;
 
@@ -110,6 +110,19 @@ public class Level extends Object {
                 removeBomb(position.add(dir.multiply(32)), times - 1, dir);
             }
         }
+    }
+
+    public boolean isEmptyCell(Point2D pos) {
+        for (Cell cell : cells) {
+            if (cell instanceof EmptyCell && cell.contains(pos)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int getGridSize() {
+        return GRID_SIZE;
     }
 
     public void removeDanger(Point2D position) {

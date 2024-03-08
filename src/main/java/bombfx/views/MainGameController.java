@@ -39,8 +39,24 @@ public class MainGameController implements Initializable {
         };
         level = new Level();
         player = new Player(new Point2D(46, 46), level);
-        enemies.add(new Enemy(new Point2D(110, 150), level, player)); // cambio joey
-        enemies.add(new Enemy(new Point2D(170, 145), level, player));
+
+        int numEnemies = (int) (Math.random() * 4) + 3;
+        for (int i = 0; i < numEnemies; i++) {
+            Point2D enemyPos;
+            do {
+                // Generar una posición aleatoria dentro de las celdas válidas
+                double x = Math.random() * 416;
+                double y = Math.random() * 416;
+                
+                // Ajustar las coordenadas para que estén centradas en la celda
+                double cellX = Math.floor(x / level.getGridSize()) * level.getGridSize() + level.getGridSize() / 2;
+                double cellY = Math.floor(y / level.getGridSize()) * level.getGridSize() + level.getGridSize() / 2;
+                
+                enemyPos = new Point2D(cellX, cellY);
+            } while (!level.isEmptyCell(enemyPos) || level.isPlayerNear(enemyPos) );
+            enemies.add(new Enemy(enemyPos, level, player));
+        }
+
         level.setPlayer(player);
         level.setEnemies(enemies);
 
