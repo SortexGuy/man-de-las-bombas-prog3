@@ -9,7 +9,6 @@ import javafx.scene.shape.Shape;
 public class WallCell extends Cell {
     public WallCell(Point2D pos) {
         super(pos);
-        this.collRect = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
     }
 
     @Override

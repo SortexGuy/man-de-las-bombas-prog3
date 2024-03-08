@@ -5,12 +5,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class BombCell extends EmptyCell {
+public class DangerCell extends EmptyCell {
     private Player player;
     private Level level;
     private double timeLeft = 3.0;
 
-    public BombCell(Point2D pos, Player player, Level level) {
+    public DangerCell(Point2D pos, Player player, Level level) {
         super(pos);
         this.player = player;
         this.level = level;

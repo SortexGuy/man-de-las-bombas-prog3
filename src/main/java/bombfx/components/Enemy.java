@@ -13,10 +13,10 @@ public class Enemy extends Character {
 
     public Enemy(Point2D pos, Level level) {
         super(pos);
+        this.level = level;
         this.random = new Random();
         speed = 100;
         changeDirTimer = 1.5;
-        this.level = level;
     }
 
     public void update(double deltaTime) {
@@ -39,15 +39,6 @@ public class Enemy extends Character {
         } else {
             pos = newPos;
         }
-
-
-        // Verificar si la nueva posición está dentro del área del juego
-        /*if (isValidMove(newPos)) {
-            pos = newPos;
-        } else {
-            // Si la nueva posición no es válida, invertir la dirección
-            dir = new Point2D(-dir.getX(), -dir.getY());
-        }*/
     }
 
     private void changeDirection() {
@@ -83,10 +74,10 @@ public class Enemy extends Character {
         gContext.stroke();
     }
 
-    private boolean isValidMove(Point2D newPos) {
-        // le falta todavia
-        return true; // Devuelve true si la nueva posición es válida
-    }
+    // private boolean isValidMove(Point2D newPos) {
+    // // le falta todavia
+    // return true; // Devuelve true si la nueva posición es válida
+    // }
 
     public void checkCollisions() {
     }
