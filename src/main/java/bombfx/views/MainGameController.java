@@ -39,8 +39,8 @@ public class MainGameController implements Initializable {
         };
         level = new Level();
         player = new Player(new Point2D(46, 46), level);
-        enemies.add(new Enemy(new Point2D(110, 150), level)); // cambio joey
-        enemies.add(new Enemy(new Point2D(170, 145), level));
+        enemies.add(new Enemy(new Point2D(110, 150), level, player)); // cambio joey
+        enemies.add(new Enemy(new Point2D(170, 145), level, player));
         level.setPlayer(player);
         level.setEnemies(enemies);
 

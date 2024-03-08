@@ -10,17 +10,23 @@ public class Enemy extends Character {
     private Random random;
     private double changeDirTimer;
     private Level level;
+    private Player player;
 
-    public Enemy(Point2D pos, Level level) {
+    public Enemy(Point2D pos, Level level, Player player) {
         super(pos);
         this.level = level;
         this.random = new Random();
+        this.player = player;
         speed = 100;
         changeDirTimer = 1.5;
     }
 
     public void update(double deltaTime) {
         changeDirTimer -= deltaTime;
+
+        if (isTouchingPlayer()) {
+            player.handleDamage();
+        }
 
         if (dir == null)
             dir = Point2D.ZERO;
@@ -72,6 +78,15 @@ public class Enemy extends Character {
         gContext.setStroke(Color.BLACK);
         gContext.setLineWidth(1);
         gContext.stroke();
+    }
+
+    private boolean isTouchingPlayer() {
+        // Calcular el área de colisión del enemigo
+        Rectangle enemyBounds = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
+
+        Rectangle playerBounds = player.getBounds();
+
+        return enemyBounds.getBoundsInParent().intersects(playerBounds.getBoundsInParent());
     }
 
     // private boolean isValidMove(Point2D newPos) {
