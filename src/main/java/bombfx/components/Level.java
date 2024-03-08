@@ -18,8 +18,8 @@ public class Level extends Object {
                 if (i == 0 || j == 0 || i == GRID_NUM - 1 || j == GRID_NUM - 1
                         || (i % 2 == 0 && j % 2 == 0)) {
                     cell = new WallCell(new Point2D(i * GRID_SIZE, j * GRID_SIZE));
-                } else if (Math.random() < 0.4) {
-                    cell = new EmptyCell(new Point2D(i * GRID_SIZE, j * GRID_SIZE));
+                } else if (Math.random() < 0.7 && !isPlayerNear(new Point2D(i * GRID_SIZE, j * GRID_SIZE))) {
+                    cell = new BlockCell(new Point2D(i * GRID_SIZE, j * GRID_SIZE));
                 } else {
                     cell = new EmptyCell(new Point2D(i * GRID_SIZE, j * GRID_SIZE));
                 }
@@ -56,5 +56,15 @@ public class Level extends Object {
             retDir = cell.getPos().subtract(rect.getX(), rect.getY());
         }
         return retDir;
+    }
+
+
+    public boolean isPlayerNear(Point2D pos) {
+        Point2D playerPos = new Point2D(46, 46);
+        double distanceThreshold = GRID_SIZE; 
+    
+        double distance = pos.distance(playerPos);
+
+        return distance < distanceThreshold;
     }
 }

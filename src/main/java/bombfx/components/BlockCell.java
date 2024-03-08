@@ -17,7 +17,7 @@ public class BlockCell extends Cell {
 
     @Override
     public void draw(GraphicsContext gContext) {
-        Color c = Color.DIMGRAY;
+        Color c = Color.GOLD;
         gContext.setFill(c);
         gContext.beginPath();
         gContext.rect(pos.getX(), pos.getY(), SIZE, SIZE);
@@ -30,7 +30,8 @@ public class BlockCell extends Cell {
 
     @Override
     public boolean collide(Rectangle rect) {
+        return overlap(rect);
         // this.rect
-        return false;
+        //return false;
     }
 }
