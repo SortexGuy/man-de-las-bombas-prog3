@@ -37,8 +37,8 @@ public class Player extends Character {
         // lastDelta = delta;
         Point2D vel = dir.multiply(delta * speed);
         pos = pos.add(vel);
-        if (dir.getX() == 0 || dir.getY() == 0 && dir != Point2D.ZERO) {
-            facing = dir;
+        if (dir.magnitude() > 0.5 && (dir.getX() == 0 || dir.getY() == 0)) {
+            facing = new Point2D(dir.getX(), dir.getY());
         }
 
         // Wall Collisions
@@ -48,11 +48,11 @@ public class Player extends Character {
             pos = pos.subtract(vel.normalize().multiply(delta * speed));
 
         // Bomb handling
-        Point2D facingPoint = facing.multiply(32).add(pos);
+        Point2D facingPoint = facing.multiply(32).add(pos.add(SIZE / 2, SIZE / 2));
         bombTimer -= delta;
         if (bomb && bombTimer <= 0) {
             level.addBomb(facingPoint);
-            bombTimer = 2.0;
+            bombTimer = 0.5;
         }
     }
 
@@ -60,7 +60,6 @@ public class Player extends Character {
     public void draw(GraphicsContext gContext) {
         Color c = Color.ORANGE;
         gContext.setFill(c);
-        // gContext.fillRect(realPos.getX(), realPos.getY(), size.getX(), size.getY());
         gContext.beginPath();
         gContext.rect(pos.getX(), pos.getY(), SIZE, SIZE);
         gContext.closePath();

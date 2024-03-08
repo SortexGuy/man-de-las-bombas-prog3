@@ -20,7 +20,8 @@ public class Level extends Object {
                 if (i == 0 || j == 0 || i == GRID_NUM - 1 || j == GRID_NUM - 1
                         || (i % 2 == 0 && j % 2 == 0)) {
                     cell = new WallCell(new Point2D(i * GRID_SIZE, j * GRID_SIZE));
-                } else if (Math.random() < 0.7 && !isPlayerNear(new Point2D(i * GRID_SIZE, j * GRID_SIZE))) {
+                } else if (Math.random() < 0.7
+                        && !isPlayerNear(new Point2D(i * GRID_SIZE, j * GRID_SIZE))) {
                     cell = new BlockCell(new Point2D(i * GRID_SIZE, j * GRID_SIZE));
                 } else {
                     cell = new EmptyCell(new Point2D(i * GRID_SIZE, j * GRID_SIZE));
@@ -60,11 +61,10 @@ public class Level extends Object {
         return retDir;
     }
 
-
     public boolean isPlayerNear(Point2D pos) {
-        Point2D playerPos = new Point2D(46, 46);// player.getPos();
-        double distanceThreshold = GRID_SIZE; 
-    
+        Point2D playerPos = new Point2D(46, 46); // player.getPos();
+        double distanceThreshold = GRID_SIZE;
+
         double distance = pos.distance(playerPos);
 
         return distance < distanceThreshold;
@@ -82,7 +82,37 @@ public class Level extends Object {
         }
     }
 
-    public void removeBomb(Point2D position) {
+    public void removeBomb(Point2D position, int times, Point2D dir) {
+        for (int i = 0; i < cells.size(); i++) {
+            Cell cell = cells.get(i);
+            if (!cell.contains(position))
+                continue;
+
+            if (i < 0 || cell instanceof WallCell)
+                return;
+
+            cell = new DangerCell(cell.getPos(), player, enemies, this);
+            cells.set(i, cell);
+            break;
+        }
+
+        for (int i = 0; i < times; i++) {
+            if (dir == Point2D.ZERO) {
+                Point2D newDir = new Point2D(1, 0);
+                removeBomb(position.add(newDir.multiply(32)), times - 1, newDir);
+                newDir = new Point2D(0, 1);
+                removeBomb(position.add(newDir.multiply(32)), times - 1, newDir);
+                newDir = new Point2D(-1, 0);
+                removeBomb(position.add(newDir.multiply(32)), times - 1, newDir);
+                newDir = new Point2D(0, -1);
+                removeBomb(position.add(newDir.multiply(32)), times - 1, newDir);
+            } else {
+                removeBomb(position.add(dir.multiply(32)), times - 1, dir);
+            }
+        }
+    }
+
+    public void removeDanger(Point2D position) {
         for (int i = 0; i < cells.size(); i++) {
             Cell cell = cells.get(i);
             if (!cell.contains(position))
@@ -102,4 +132,3 @@ public class Level extends Object {
         this.enemies = enemies;
     }
 }
-

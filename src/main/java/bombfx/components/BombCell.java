@@ -8,7 +8,7 @@ import javafx.scene.shape.Rectangle;
 public class BombCell extends EmptyCell {
     private Player player;
     private Level level;
-    private double timeLeft = 3.0;
+    private double timeLeft = 2.0;
 
     public BombCell(Point2D pos, Player player, Level level) {
         super(pos);
@@ -22,7 +22,7 @@ public class BombCell extends EmptyCell {
         timeLeft -= delta;
         if (timeLeft <= 0) {
             Point2D position = getPos().add(SIZE / 2, SIZE / 2);
-            level.removeBomb(position);
+            level.removeBomb(position, 1, Point2D.ZERO);
         }
     }
 
