@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: rgba(137, 196, 244,0.6);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bombfx.views.MainGameController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: rgba(137, 196, 244,0.6);" stylesheets="@fonts.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bombfx.views.MainGameController">
    <children>
       <ImageView fitHeight="528.0" fitWidth="745.0" layoutX="109.0" opacity="0.6" pickOnBounds="true" preserveRatio="true" scaleX="1.3">
          <image>
@@ -28,7 +28,7 @@
             <Image url="@descarga-removebg-preview.png" />
          </image>
       </ImageView>
-      <Label layoutX="189.0" layoutY="345.0" text="00">
+      <Label fx:id="lifeLabel" layoutX="189.0" layoutY="345.0" text="00">
          <font>
             <Font name="Bomberman" size="45.0" />
          </font>
@@ -43,7 +43,7 @@
             <Canvas fx:id="gameCanvas" height="416.0" width="416.0" />
          </children>
       </Pane>
-      <AnchorPane fx:id="resultPane" disable="true" style="-fx-background-color: rgba(0,0,0,0.7);" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="resultPane" style="-fx-background-color: rgba(0,0,0,0.7);" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" layoutY="91.0" maxWidth="1.7976931348623157E308" prefHeight="370.0" prefWidth="972.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="91.0">
                <children>
@@ -76,7 +76,7 @@
                            </fill>
                         </Text>
                         <Separator maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="456.0" visible="false" />
-                        <Button mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="159.0" prefWidth="465.0" text="Volver al menu">
+                        <Button fx:id="backButton" defaultButton="true" mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="159.0" prefWidth="465.0" text="Volver al menu">
                            <font>
                               <Font name="Bomberman" size="40.0" />
                            </font>

@@ -144,7 +144,7 @@ public class Level extends Object {
                         cell = new InvulnerabilityItem(cell.getPos(), player, this);
                         break;
                     case 2:
-                        cell = new NewLifeItem(cell.getPos(), player, this);
+                        cell = new BombPowerItem(cell.getPos(), player, this);
                         break;
                     default:
                         cell = new EmptyCell(cell.getPos());

@@ -35,6 +35,9 @@ public class MainMenuController implements Initializable {
             // Mostrar el panel de créditos y deshabilitar el contenedor principal
             mainPane.setVisible(false);
             mainPane.setDisable(true);
+            helpPane.setVisible(false);
+            helpPane.setDisable(true);
+            isHelpVisible = false;
 
             creditsPane.setVisible(true);
             creditsPane.setDisable(false);
@@ -61,6 +64,9 @@ public class MainMenuController implements Initializable {
             // Mostrar el panel de ayuda y deshabilitar el contenedor principal
             mainPane.setVisible(false);
             mainPane.setDisable(true);
+            creditsPane.setVisible(false);
+            creditsPane.setDisable(true);
+            isCreditsVisible = false;
 
             helpPane.setVisible(true);
             helpPane.setDisable(false);

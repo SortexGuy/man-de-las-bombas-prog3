@@ -10,6 +10,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -30,6 +31,10 @@ public class MainGameController implements Initializable {
     private AnchorPane resultPane; // Panel que muestra el resultado (victoria o derrota)
     @FXML                          // fx:id="resultText"
     private Text resultText;       // Texto que muestra el resultado (victoria o derrota
+    @FXML                          // fx:id="lifeLabel"
+    private Label lifeLabel;       // Label que muestra la cantidad de vidas
+    @FXML                          // fx:id="backButton"
+    private Button backButton;     // Botón para volver a la pantalla de inicio
     @FXML                          // fx:id="gameCanvas"
     private Canvas gameCanvas;     // Canvas utilizado para dibujar el juego
     private GraphicsContext gContext;// Contexto gráfico para dibujar en el Canvas
@@ -38,7 +43,6 @@ public class MainGameController implements Initializable {
     private Player player;
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     private Level level;
-    // NewLifeItem newLifeItem;
 
     /**
      * Inicializa el controlador.
@@ -47,6 +51,8 @@ public class MainGameController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        lifeLabel.setStyle("-fx-letter-spacing: 0.2em;");
+
         gContext = gameCanvas.getGraphicsContext2D();
 
         // Creación del bucle del juego
@@ -102,19 +108,25 @@ public class MainGameController implements Initializable {
         // Verifica las condiciones de victoria o derrota
         if (enemies.isEmpty()) {
             // Mostrar mensaje de victoria
-            System.out.println("YOU WIN!");
+            resultText.setText("GANASTE!");
             // Mostrar panel de Victoria
             gameLoop.stop();
-            App.setRoot("views/MainMenuUI");
+            // resultText.setDisable(false);
+            // backButton.setDisable(false);
+            resultPane.setVisible(true);
+            backButton.setVisible(true);
+        }
+        if (player.isDead()) {
+            resultText.setText("PERDISTE!");
+            // Mostrar panel de Derrota
+            gameLoop.stop();
+            // resultText.setDisable(false);
+            // backButton.setDisable(false);
+            resultPane.setVisible(true);
+            backButton.setVisible(true);
         }
 
-        if (player.isDead()) {
-            // Mostrar mensaje de derrota
-            System.out.println("YOU LOSE!!!");
-            // Mostrar panel de Derrota
-            gameLoop.stop();// Detener el bucle del juego
-            App.setRoot("views/MainMenuUI");
-        }
+        lifeLabel.setText(player.getLives());
     }
 
     /**
@@ -127,7 +139,6 @@ public class MainGameController implements Initializable {
         gContext.fillRect(0, 0, width, height);
 
         level.draw(gContext);
-
         player.draw(gContext);
         enemies.forEach(enemy -> enemy.draw(gContext));
     }

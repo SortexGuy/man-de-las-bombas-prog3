@@ -45,7 +45,7 @@ public class NewLifeItem extends ItemCell {
     public void draw(GraphicsContext gContext) {
         super.draw(gContext);
 
-        Color c = Color.DARKORANGE;
+        Color c = Color.DARKGREEN;
         gContext.setFill(c);
         gContext.beginPath();
         gContext.rect(pos.getX() + 8, pos.getY() + 8, SIZE - 16, SIZE - 16);

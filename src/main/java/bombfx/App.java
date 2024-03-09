@@ -31,6 +31,7 @@ public class App extends Application {
 
         // Crear una escena con la jerarquía de nodos y un tamaño específico
         scene = new Scene(hierarchy, 960, 540, Color.BLACK);
+        scene.getStylesheets().add(App.class.getResource("views/fonts.css").toExternalForm());
 
          // Configurar propiedades de la ventana principal
         stage.setTitle("Man de las Bombas FX"); //Titulo de la ventana
@@ -41,6 +42,12 @@ public class App extends Application {
 
         // Establecer la escena en la ventana principal y mostrarla
         stage.setScene(scene);
+        try {
+            Thread.sleep(1500, 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        hierarchy.applyCss();
         stage.show();
     }
 

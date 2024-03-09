@@ -17,6 +17,7 @@ public class Player extends Character {
     private Level level;
     private InputHandler inputHandler;// Manejador de entrada para controlar las acciones del jugador
     private int lives = 3;
+    private int bombPower = 1;
     private double bombTimer = 0;// Temporizador para limitar la frecuencia de colocación de bombas
     private Rectangle collRect;
     private boolean invulnerable;// Indica si el jugador está temporalmente invulnerable
@@ -133,7 +134,11 @@ public class Player extends Character {
      */
     public void addLife() {
         lives++;
-        System.out.println("¡Vida extra otorgada! Vidas restantes: " + lives);
+    }
+
+    public void addBombPower() {
+        if (bombPower < 4)
+            bombPower++;
     }
 
     /**
@@ -176,5 +181,13 @@ public class Player extends Character {
      */
     public Rectangle getCollRect() {
         return collRect;
+    }
+
+    public String getLives() {
+        return Integer.toString(lives);
+    }
+
+    public int getBombPower() {
+        return bombPower;
     }
 }
