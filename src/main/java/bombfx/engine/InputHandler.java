@@ -19,7 +19,7 @@ public class InputHandler {
         RIGHT,
         BOMB,
         // SPRINT,
-        SPECIAL;
+        // SPECIAL;
     }
 
     public Input[] inputs = new Input[InputOrder.values().length];
@@ -30,9 +30,9 @@ public class InputHandler {
         inputs[InputOrder.LEFT.ordinal()] = new Input(KeyCode.A);
         inputs[InputOrder.RIGHT.ordinal()] = new Input(KeyCode.D);
 
-        inputs[InputOrder.BOMB.ordinal()] = new Input(KeyCode.J);
+        inputs[InputOrder.BOMB.ordinal()] = new Input(KeyCode.SPACE);
         // inputs[InputOrder.SPRINT.ordinal()] = new Input(KeyCode.K);
-        inputs[InputOrder.SPECIAL.ordinal()] = new Input(KeyCode.L);
+        // inputs[InputOrder.SPECIAL.ordinal()] = new Input(KeyCode.L);
     }
 
     public void inputPressed(KeyCode kCode) {
