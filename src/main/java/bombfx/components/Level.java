@@ -61,7 +61,6 @@ public class Level extends Object {
         double distanceThreshold = GRID_SIZE;
 
         double distance = pos.distance(playerPos);
-
         return distance < distanceThreshold;
     }
 
@@ -89,13 +88,18 @@ public class Level extends Object {
             if (i < 0 || cell instanceof WallCell)
                 return;
             if (cell instanceof BlockCell) {
-                int random = (int) (Math.random() * 6);
+                int random = ((int) (Math.random() * 8)) % 4;
                 switch (random) {
                     case 0:
+                        cell = new NewLifeItem(cell.getPos(), player, this);
                         break;
                     case 1:
+                        cell = new NewLifeItem(cell.getPos(), player, this);
                         break;
                     case 2:
+                        cell = new NewLifeItem(cell.getPos(), player, this);
+                        break;
+                    default:
                         cell = new EmptyCell(cell.getPos());
                         break;
                 }
@@ -119,6 +123,34 @@ public class Level extends Object {
             } else {
                 removeBomb(position.add(dir.multiply(32)), times - 1, dir);
             }
+        }
+    }
+
+    public boolean addItem(ItemCell item, Point2D position) {
+        for (int i = 0; i < cells.size(); i++) {
+            Cell cell = cells.get(i);
+            if (!cell.contains(position))
+                continue;
+
+            if (cell instanceof WallCell || cell instanceof BlockCell)
+                return false;
+
+            cell = new NewLifeItem(cell.getPos(), player, this); // Por ahora
+            cells.set(i, cell);
+            return true;
+        }
+        return false;
+    }
+
+    public void removeItem(Point2D position) {
+        for (int i = 0; i < cells.size(); i++) {
+            Cell cell = cells.get(i);
+            if (!cell.contains(position))
+                continue;
+
+            cell = new EmptyCell(cell.getPos());
+            cells.set(i, cell);
+            break;
         }
     }
 

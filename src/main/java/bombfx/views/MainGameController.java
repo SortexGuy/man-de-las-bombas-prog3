@@ -18,6 +18,7 @@ import javafx.scene.text.Text;
 import bombfx.App;
 import bombfx.components.Enemy; //cambio joey
 import bombfx.components.Level;
+import bombfx.components.NewLifeItem;
 import bombfx.components.Player;
 import bombfx.engine.GameLoop;
 
@@ -34,6 +35,7 @@ public class MainGameController implements Initializable {
     private Player player;
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     private Level level;
+    // NewLifeItem newLifeItem;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,6 +49,10 @@ public class MainGameController implements Initializable {
         };
         level = new Level();
         player = new Player(new Point2D(46, 46), level);
+
+        // newLifeItem = new NewLifeItem(new Point2D(100, 100), player, level);//para
+        // probar
+        // level.addItem(newLifeItem, new Point2D(100, 100));//para probar
 
         int numEnemies = (int) (Math.random() * 4) + 3;
         for (int i = 0; i < numEnemies; i++) {
@@ -80,6 +86,7 @@ public class MainGameController implements Initializable {
         level.update(deltaTime);
         player.update(deltaTime);
         enemies.forEach(enemy -> enemy.update(deltaTime));
+        // newLifeItem.update(deltaTime); // para probar
 
         if (enemies.isEmpty()) {
             System.out.println("YOU WIN!");
@@ -101,6 +108,7 @@ public class MainGameController implements Initializable {
         gContext.fillRect(0, 0, width, height);
 
         level.draw(gContext);
+        // newLifeItem.draw(gContext); // para probar
 
         player.draw(gContext);
         enemies.forEach(enemy -> enemy.draw(gContext));

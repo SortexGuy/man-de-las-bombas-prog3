@@ -106,6 +106,11 @@ public class Player extends Character {
         }
     }
 
+    public void addLife() {
+        lives++;
+        System.out.println("¡Vida extra otorgada! Vidas restantes: " + lives);
+    }
+
     public void handleKeyPress(KeyEvent event) {
         inputHandler.inputPressed(event.getCode());
     }

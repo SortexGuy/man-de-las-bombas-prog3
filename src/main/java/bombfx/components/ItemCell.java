@@ -6,8 +6,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class ItemCell extends EmptyCell {
-    private Player player;
-    private Level level;
+    protected Player player;
+    protected Level level;
 
     public ItemCell(Point2D pos, Player player, Level level) {
         super(pos);
