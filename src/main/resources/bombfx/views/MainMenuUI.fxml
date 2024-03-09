@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #A00016;" stylesheets="@fonts.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bombfx.views.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #A00016;" stylesheets="@fonts.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bombfx.views.MainMenuController">
    <children>
       <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -169,7 +169,7 @@
       </AnchorPane>
       <AnchorPane fx:id="creditsPane" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: rgba( 0,0,0,0.6);" visible="false">
          <children>
-            <Text fill="WHITE" layoutX="391.0" layoutY="54.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="4.0" text="Creditos" textAlignment="CENTER" wrappingWidth="242.4146728515625" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="30.0">
+            <Text fill="WHITE" layoutX="391.0" layoutY="54.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="4.0" text="Acerca de" textAlignment="CENTER" wrappingWidth="282.81097412109375" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="328.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="Bomberman" size="40.0" />
                </font>
@@ -263,6 +263,11 @@
                   </HBox>
                </children>
             </VBox>
+            <Text fill="WHITE" layoutX="24.0" layoutY="457.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Lenguaje: Java version: 1.0 Librerias externas: javafx" wrappingWidth="252.81103515625">
+               <font>
+                  <Font name="Bomberman" size="20.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="helpPane" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: rgba( 0,0,0,0.6);" visible="false">
@@ -299,7 +304,7 @@
             </Text>
          </children>
       </AnchorPane>
-      <VBox layoutX="721.0" layoutY="380.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
+      <VBox layoutX="721.0" layoutY="380.0" prefWidth="237.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
          <children>
             <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#OnHelpButtonClicked" prefHeight="60.0" prefWidth="186.0" style="-fx-text-alignment: JUSTIFY; -fx-alignment: CENTER_LEFT; -fx-background-insets: 4; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 4; -fx-border-radius: 20;">
                <font>
@@ -309,7 +314,7 @@
                   <Insets bottom="12.0" left="30.0" right="30.0" top="12.0" />
                </padding>
                <graphic>
-                  <Text stroke="#3652c7" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Ayuda" textAlignment="CENTER" wrappingWidth="166.13674926757812">
+                  <Text stroke="#3652c7" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text=" Ayuda" textAlignment="CENTER" wrappingWidth="166.13674926757812">
                      <font>
                         <Font name="Bomberman" size="33.0" />
                      </font>
@@ -353,7 +358,7 @@
                   <Insets bottom="12.0" left="30.0" right="30.0" top="12.0" />
                </padding>
                <graphic>
-                  <Text stroke="#3652c7" strokeType="OUTSIDE" strokeWidth="0.0" text="Creditos" textAlignment="CENTER" wrappingWidth="166.13674926757812">
+                  <Text stroke="#3652c7" strokeType="OUTSIDE" strokeWidth="0.0" text="acerca de" textAlignment="CENTER" wrappingWidth="187.47006225585938">
                      <font>
                         <Font name="Bomberman" size="30.0" />
                      </font>
