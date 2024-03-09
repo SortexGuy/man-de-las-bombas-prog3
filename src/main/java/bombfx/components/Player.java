@@ -116,6 +116,12 @@ public class Player extends Character {
             bombPower++;
     }
 
+    public void activateInvulnerability(double duration) {
+        invulnerable = true;
+        invulnerabilityDuration = duration;
+        invulnerabilityTimer = duration;
+    }
+
     public void handleKeyPress(KeyEvent event) {
         inputHandler.inputPressed(event.getCode());
     }
