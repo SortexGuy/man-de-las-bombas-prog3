@@ -10,6 +10,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -27,6 +28,10 @@ public class MainGameController implements Initializable {
     private AnchorPane resultPane; // Value injected by FXMLLoader
     @FXML                          // fx:id="resultText"
     private Text resultText;       // Value injected by FXMLLoader
+    @FXML                          // fx:id="lifeLabel"
+    private Label lifeLabel;       // Value injected by FXMLLoader
+    @FXML                          // fx:id="backButton"
+    private Button backButton;     // Value injected by FXMLLoader
     @FXML                          // fx:id="gameCanvas"
     private Canvas gameCanvas;     // Value injected by FXMLLoader
     private GraphicsContext gContext;
@@ -35,10 +40,11 @@ public class MainGameController implements Initializable {
     private Player player;
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     private Level level;
-    // NewLifeItem newLifeItem;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        lifeLabel.setStyle("-fx-letter-spacing: 0.2em;");
+
         gContext = gameCanvas.getGraphicsContext2D();
         gameLoop = new GameLoop() {
             @Override
@@ -49,10 +55,6 @@ public class MainGameController implements Initializable {
         };
         level = new Level();
         player = new Player(new Point2D(46, 46), level);
-
-        // newLifeItem = new NewLifeItem(new Point2D(100, 100), player, level);//para
-        // probar
-        // level.addItem(newLifeItem, new Point2D(100, 100));//para probar
 
         int numEnemies = (int) (Math.random() * 4) + 3;
         for (int i = 0; i < numEnemies; i++) {
@@ -86,21 +88,27 @@ public class MainGameController implements Initializable {
         level.update(deltaTime);
         player.update(deltaTime);
         enemies.forEach(enemy -> enemy.update(deltaTime));
-        // newLifeItem.update(deltaTime); // para probar
 
         if (enemies.isEmpty()) {
-            System.out.println("YOU WIN!");
+            resultText.setText("GANASTE!");
             // Mostrar panel de Victoria
             gameLoop.stop();
-            App.setRoot("views/MainMenuUI");
+            // resultText.setDisable(false);
+            // backButton.setDisable(false);
+            resultPane.setVisible(true);
+            backButton.setVisible(true);
         }
-
         if (player.isDead()) {
-            System.out.println("YOU LOSE!!!");
+            resultText.setText("PERDISTE!");
             // Mostrar panel de Derrota
             gameLoop.stop();
-            App.setRoot("views/MainMenuUI");
+            // resultText.setDisable(false);
+            // backButton.setDisable(false);
+            resultPane.setVisible(true);
+            backButton.setVisible(true);
         }
+
+        lifeLabel.setText(player.getLives());
     }
 
     private void draw(double width, double height) {
@@ -108,8 +116,6 @@ public class MainGameController implements Initializable {
         gContext.fillRect(0, 0, width, height);
 
         level.draw(gContext);
-        // newLifeItem.draw(gContext); // para probar
-
         player.draw(gContext);
         enemies.forEach(enemy -> enemy.draw(gContext));
     }

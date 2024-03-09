@@ -13,6 +13,7 @@ public class Player extends Character {
     private Level level;
     private InputHandler inputHandler;
     private int lives = 3;
+    private int bombPower = 1;
     private double bombTimer = 0;
     private Rectangle collRect;
     private boolean invulnerable;
@@ -108,7 +109,11 @@ public class Player extends Character {
 
     public void addLife() {
         lives++;
-        System.out.println("¡Vida extra otorgada! Vidas restantes: " + lives);
+    }
+
+    public void addBombPower() {
+        if (bombPower < 4)
+            bombPower++;
     }
 
     public void handleKeyPress(KeyEvent event) {
@@ -125,5 +130,13 @@ public class Player extends Character {
 
     public Rectangle getCollRect() {
         return collRect;
+    }
+
+    public String getLives() {
+        return Integer.toString(lives);
+    }
+
+    public int getBombPower() {
+        return bombPower;
     }
 }

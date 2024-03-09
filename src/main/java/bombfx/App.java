@@ -20,6 +20,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         Parent hierarchy = App.loadFromFXML("views/MainMenuUI");
         scene = new Scene(hierarchy, 960, 540, Color.BLACK);
+        scene.getStylesheets().add(App.class.getResource("views/fonts.css").toExternalForm());
 
         stage.setTitle("Man de las Bombas FX");
         stage.setFullScreen(false);
@@ -28,6 +29,12 @@ public class App extends Application {
         stage.centerOnScreen();
 
         stage.setScene(scene);
+        try {
+            Thread.sleep(1500, 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        hierarchy.applyCss();
         stage.show();
     }
 

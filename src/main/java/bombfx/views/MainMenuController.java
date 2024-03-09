@@ -26,6 +26,9 @@ public class MainMenuController implements Initializable {
         if (!isCreditsVisible) {
             mainPane.setVisible(false);
             mainPane.setDisable(true);
+            helpPane.setVisible(false);
+            helpPane.setDisable(true);
+            isHelpVisible = false;
 
             creditsPane.setVisible(true);
             creditsPane.setDisable(false);
@@ -46,6 +49,9 @@ public class MainMenuController implements Initializable {
         if (!isHelpVisible) {
             mainPane.setVisible(false);
             mainPane.setDisable(true);
+            creditsPane.setVisible(false);
+            creditsPane.setDisable(true);
+            isCreditsVisible = false;
 
             helpPane.setVisible(true);
             helpPane.setDisable(false);

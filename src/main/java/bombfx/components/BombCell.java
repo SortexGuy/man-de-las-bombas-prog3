@@ -22,7 +22,7 @@ public class BombCell extends EmptyCell {
         timeLeft -= delta;
         if (timeLeft <= 0) {
             Point2D position = getPos().add(SIZE / 2, SIZE / 2);
-            level.removeBomb(position, 1, Point2D.ZERO);
+            level.removeBomb(position, player.getBombPower(), Point2D.ZERO);
         }
     }
 

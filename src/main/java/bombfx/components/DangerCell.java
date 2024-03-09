@@ -10,7 +10,7 @@ public class DangerCell extends EmptyCell {
     private Player player;
     private ArrayList<Enemy> enemies;
     private Level level;
-    private double timeLeft = 1.0;
+    private double timeLeft = 0.7;
 
     public DangerCell(Point2D pos, Player player, ArrayList<Enemy> enemies, Level level) {
         super(pos);
