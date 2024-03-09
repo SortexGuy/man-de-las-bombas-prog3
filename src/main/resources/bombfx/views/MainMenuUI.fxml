@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #A00016;" stylesheets="@fonts.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bombfx.views.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #A00016;" stylesheets="@fonts.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bombfx.views.MainMenuController">
    <children>
       <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -179,11 +179,11 @@
                   <Font name="Bomberman" size="40.0" />
                </font>
             </Text>
-            <VBox alignment="CENTER" layoutX="152.0" layoutY="160.0" prefWidth="100.0" AnchorPane.bottomAnchor="180.0" AnchorPane.topAnchor="135.0">
+            <VBox alignment="CENTER" layoutX="152.0" layoutY="160.0" prefWidth="100.0" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="135.0">
                <children>
                   <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                      <children>
-                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruben Aronico" wrappingWidth="326.4146728515625" HBox.hgrow="NEVER">
+                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruben Aronico" wrappingWidth="330.0" HBox.hgrow="NEVER">
                            <font>
                               <Font name="Bomberman" size="30.0" />
                            </font>
@@ -191,27 +191,7 @@
                               <Insets left="4.0" right="4.0" />
                            </HBox.margin>
                         </Text>
-                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ci 30.212.978" textAlignment="RIGHT" wrappingWidth="326.4146728515625" HBox.hgrow="NEVER">
-                           <font>
-                              <Font name="Bomberman" size="30.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="4.0" right="4.0" />
-                           </HBox.margin>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Joeys Daniels" wrappingWidth="326.4146728515625" HBox.hgrow="NEVER">
-                           <font>
-                              <Font name="Bomberman" size="30.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="4.0" right="4.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ci 29.906.987" textAlignment="RIGHT" wrappingWidth="326.4146728515625" HBox.hgrow="NEVER">
+                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ci 30.212.978" textAlignment="RIGHT" wrappingWidth="230.0" HBox.hgrow="NEVER">
                            <font>
                               <Font name="Bomberman" size="30.0" />
                            </font>
@@ -223,7 +203,7 @@
                   </HBox>
                   <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                      <children>
-                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Bryan Casanova" wrappingWidth="326.4146728515625" HBox.hgrow="NEVER">
+                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Joeys Daniels" wrappingWidth="330.0" HBox.hgrow="NEVER">
                            <font>
                               <Font name="Bomberman" size="30.0" />
                            </font>
@@ -231,7 +211,7 @@
                               <Insets left="4.0" right="4.0" />
                            </HBox.margin>
                         </Text>
-                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ci 30.577.090" textAlignment="RIGHT" wrappingWidth="326.4146728515625" HBox.hgrow="NEVER">
+                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ci 29.906.987" textAlignment="RIGHT" wrappingWidth="230.0" HBox.hgrow="NEVER">
                            <font>
                               <Font name="Bomberman" size="30.0" />
                            </font>
@@ -243,7 +223,7 @@
                   </HBox>
                   <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                      <children>
-                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Julio Guzman" wrappingWidth="326.4146728515625" HBox.hgrow="NEVER">
+                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Bryan Casanova" wrappingWidth="330.0" HBox.hgrow="NEVER">
                            <font>
                               <Font name="Bomberman" size="30.0" />
                            </font>
@@ -251,7 +231,27 @@
                               <Insets left="4.0" right="4.0" />
                            </HBox.margin>
                         </Text>
-                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ci 30.696.530" textAlignment="RIGHT" wrappingWidth="326.4146728515625" HBox.hgrow="NEVER">
+                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ci 30.577.090" textAlignment="RIGHT" wrappingWidth="230.0" HBox.hgrow="NEVER">
+                           <font>
+                              <Font name="Bomberman" size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="4.0" right="4.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Julio Guzman" wrappingWidth="330.0" HBox.hgrow="NEVER">
+                           <font>
+                              <Font name="Bomberman" size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="4.0" right="4.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fill="WHITE" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ci 30.696.530" textAlignment="RIGHT" wrappingWidth="230.0" HBox.hgrow="NEVER">
                            <font>
                               <Font name="Bomberman" size="30.0" />
                            </font>
@@ -437,10 +437,10 @@
                   </Text>
                </graphic>
                <VBox.margin>
-                  <Insets bottom="4.0" top="4.0" />
+                  <Insets bottom="2.0" top="2.0" />
                </VBox.margin>
             </Button>
-            <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#OnCreditsButtonClicked" prefHeight="60.0" prefWidth="186.0" style="-fx-text-alignment: JUSTIFY; -fx-alignment: CENTER_LEFT; -fx-background-insets: 4; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 4; -fx-border-radius: 20;">
+            <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#OnStatsButtonClicked" prefHeight="60.0" prefWidth="186.0" style="-fx-text-alignment: JUSTIFY; -fx-alignment: CENTER_LEFT; -fx-background-insets: 4; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 4; -fx-border-radius: 20;">
                <font>
                   <Font name="Bomberman" size="20.0" />
                </font>
@@ -481,7 +481,7 @@
                   </Text>
                </graphic>
                <VBox.margin>
-                  <Insets bottom="4.0" top="4.0" />
+                  <Insets bottom="2.0" top="2.0" />
                </VBox.margin>
             </Button>
             <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#OnCreditsButtonClicked" prefHeight="60.0" prefWidth="186.0" style="-fx-text-alignment: JUSTIFY; -fx-alignment: CENTER_LEFT; -fx-background-insets: 4; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 4; -fx-border-radius: 20;">
@@ -524,6 +524,9 @@
                      </fill>
                   </Text>
                </graphic>
+               <VBox.margin>
+                  <Insets bottom="2.0" top="2.0" />
+               </VBox.margin>
             </Button>
          </children>
       </VBox>

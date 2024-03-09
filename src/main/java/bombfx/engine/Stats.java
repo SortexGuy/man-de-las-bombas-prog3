@@ -119,4 +119,20 @@ public class Stats extends Object {
     public void setNickname(String nickname) {
         this.nickname = nickname.toLowerCase();
     }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public int getGames() {
+        return games;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public int getLosses() {
+        return losses;
+    }
 }
