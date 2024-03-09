@@ -6,12 +6,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class NewLifeItem extends ItemCell {
-    private Player player;
-    private Level level;
-
     public NewLifeItem(Point2D pos, Player player, Level level) {
         super(pos, player, level);
-        this.player = player;
         this.collRect = new Rectangle(pos.getX() + 4, pos.getY() + 4, SIZE - 8, SIZE - 8);
     }
 
@@ -19,7 +15,8 @@ public class NewLifeItem extends ItemCell {
     public void update(double delta) {
         if (this.overlap(player.getCollRect())) {
             player.addLife();
-            level.removeItem(pos);
+            Point2D newPos = new Point2D(pos.getX() + SIZE / 2, pos.getY() + SIZE / 2);
+            level.removeItem(newPos);
         }
     }
 
