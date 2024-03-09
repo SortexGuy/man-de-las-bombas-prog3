@@ -18,18 +18,21 @@ import javafx.scene.text.Text;
 import bombfx.App;
 import bombfx.components.Enemy; //cambio joey
 import bombfx.components.Level;
-import bombfx.components.NewLifeItem;
 import bombfx.components.Player;
 import bombfx.engine.GameLoop;
 
+/**
+ * Controlador para la vista principal del juego.
+ * Controla la lógica del juego y la interfaz de usuario durante el juego principal.
+ */
 public class MainGameController implements Initializable {
     @FXML                          // fx:id="resultPane"
-    private AnchorPane resultPane; // Value injected by FXMLLoader
+    private AnchorPane resultPane; // Panel que muestra el resultado (victoria o derrota)
     @FXML                          // fx:id="resultText"
-    private Text resultText;       // Value injected by FXMLLoader
+    private Text resultText;       // Texto que muestra el resultado (victoria o derrota
     @FXML                          // fx:id="gameCanvas"
-    private Canvas gameCanvas;     // Value injected by FXMLLoader
-    private GraphicsContext gContext;
+    private Canvas gameCanvas;     // Canvas utilizado para dibujar el juego
+    private GraphicsContext gContext;// Contexto gráfico para dibujar en el Canvas
 
     private GameLoop gameLoop;
     private Player player;
@@ -37,9 +40,16 @@ public class MainGameController implements Initializable {
     private Level level;
     // NewLifeItem newLifeItem;
 
+    /**
+     * Inicializa el controlador.
+     * Configura el contexto gráfico y crea el bucle del juego.
+     * Genera el nivel, el jugador y los enemigos.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         gContext = gameCanvas.getGraphicsContext2D();
+
+        // Creación del bucle del juego
         gameLoop = new GameLoop() {
             @Override
             public void tick(double deltaTime) {
@@ -50,10 +60,8 @@ public class MainGameController implements Initializable {
         level = new Level();
         player = new Player(new Point2D(46, 46), level);
 
-        // newLifeItem = new NewLifeItem(new Point2D(100, 100), player, level);//para
-        // probar
-        // level.addItem(newLifeItem, new Point2D(100, 100));//para probar
 
+        // Generación de enemigos
         int numEnemies = (int) (Math.random() * 4) + 3;
         for (int i = 0; i < numEnemies; i++) {
             Point2D enemyPos;
@@ -76,19 +84,24 @@ public class MainGameController implements Initializable {
         level.setPlayer(player);
         level.setEnemies(enemies);
 
-        // Input events
+        // Eventos de entrada del teclado
         App.getScene().addEventHandler(KeyEvent.KEY_PRESSED, e -> { player.handleKeyPress(e); });
         App.getScene().addEventHandler(KeyEvent.KEY_RELEASED, e -> { player.handleKeyRelease(e); });
         gameLoop.start();
     }
 
+    /**
+     * Actualiza la lógica del juego en cada fotograma.
+     * @param deltaTime El tiempo transcurrido desde el último fotograma en segundos.
+     */
     private void update(double deltaTime) {
         level.update(deltaTime);
         player.update(deltaTime);
         enemies.forEach(enemy -> enemy.update(deltaTime));
-        // newLifeItem.update(deltaTime); // para probar
 
+        // Verifica las condiciones de victoria o derrota
         if (enemies.isEmpty()) {
+            // Mostrar mensaje de victoria
             System.out.println("YOU WIN!");
             // Mostrar panel de Victoria
             gameLoop.stop();
@@ -96,26 +109,35 @@ public class MainGameController implements Initializable {
         }
 
         if (player.isDead()) {
+            // Mostrar mensaje de derrota
             System.out.println("YOU LOSE!!!");
             // Mostrar panel de Derrota
-            gameLoop.stop();
+            gameLoop.stop();// Detener el bucle del juego
             App.setRoot("views/MainMenuUI");
         }
     }
 
+    /**
+     * Dibuja el juego en el Canvas.
+     * @param width Ancho del Canvas.
+     * @param height Alto del Canvas.
+     */
     private void draw(double width, double height) {
         gContext.setFill(Color.GRAY);
         gContext.fillRect(0, 0, width, height);
 
         level.draw(gContext);
-        // newLifeItem.draw(gContext); // para probar
 
         player.draw(gContext);
         enemies.forEach(enemy -> enemy.draw(gContext));
     }
 
+    /**
+     * Maneja el evento de clic en el botón de retroceso.
+     * Cambia a la vista del menú principal.
+     */
     @FXML
     void onBackButtonClicked(ActionEvent event) {
-        App.setRoot("views/MainMenuUI");
+        App.setRoot("views/MainMenuUI");// Cambiar a la vista del menú principal
     }
 }

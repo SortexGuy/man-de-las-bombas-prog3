@@ -2,16 +2,30 @@ package bombfx.engine;
 
 import javafx.scene.input.KeyCode;
 
+/**
+ * Clase para manejar las entradas del usuario en el juego.
+ */
 public class InputHandler {
+
+    /**
+     * Clase interna que representa una entrada de teclado.
+     */
     public class Input {
         public KeyCode kCode;
         public Boolean pressed = false;
 
+        /**
+         * Constructor para inicializar una entrada de teclado con el código de tecla proporcionado.
+         * @param kCode El código de la tecla.
+         */
         public Input(KeyCode kCode) {
             this.kCode = kCode;
         }
     }
 
+    /**
+     * Enumeración que define el orden de las entradas.
+     */
     public enum InputOrder {
         UP,
         DOWN,
@@ -22,8 +36,12 @@ public class InputHandler {
         // SPECIAL;
     }
 
+    // Arreglo que almacena las entradas de teclado
     public Input[] inputs = new Input[InputOrder.values().length];
 
+    /**
+     * Constructor que inicializa las entradas de teclado predeterminadas.
+     */
     public InputHandler() {
         inputs[InputOrder.UP.ordinal()] = new Input(KeyCode.W);
         inputs[InputOrder.DOWN.ordinal()] = new Input(KeyCode.S);
@@ -35,6 +53,10 @@ public class InputHandler {
         // inputs[InputOrder.SPECIAL.ordinal()] = new Input(KeyCode.L);
     }
 
+    /**
+     * Método para manejar el evento de tecla presionada.
+     * @param kCode El código de la tecla que se presionó.
+     */
     public void inputPressed(KeyCode kCode) {
         for (Input i : inputs) {
             if (i.kCode != kCode)
@@ -45,6 +67,10 @@ public class InputHandler {
         }
     }
 
+    /**
+     * Método para manejar el evento de tecla liberada.
+     * @param kCode El código de la tecla que se liberó.
+     */
     public void inputReleased(KeyCode kCode) {
         for (Input i : inputs) {
             if (i.kCode != kCode)
@@ -55,6 +81,11 @@ public class InputHandler {
         }
     }
 
+    /**
+     * Obtiene la entrada de teclado para un orden específico.
+     * @param action El orden de la entrada.
+     * @return La entrada de teclado asociada al orden especificado.
+     */
     public Input getInput(InputOrder action) {
         return inputs[action.ordinal()];
     }

@@ -9,16 +9,26 @@ import javafx.scene.shape.Rectangle;
 import bombfx.engine.InputHandler;
 import bombfx.engine.InputHandler.InputOrder;
 
+/**
+ * Clase que representa al jugador en el juego.
+ * El jugador puede moverse por el nivel, colocar bombas y tiene una cantidad limitada de vidas.
+ */
 public class Player extends Character {
     private Level level;
-    private InputHandler inputHandler;
+    private InputHandler inputHandler;// Manejador de entrada para controlar las acciones del jugador
     private int lives = 3;
-    private double bombTimer = 0;
+    private double bombTimer = 0;// Temporizador para limitar la frecuencia de colocación de bombas
     private Rectangle collRect;
-    private boolean invulnerable;
-    private double invulnerabilityDuration;
-    private double invulnerabilityTimer;
+    private boolean invulnerable;// Indica si el jugador está temporalmente invulnerable
+    private double invulnerabilityDuration;// Duración de la invulnerabilidad del jugador
+    private double invulnerabilityTimer;// Temporizador para controlar la duración de la invulnerabilidad
 
+    /**
+     * Constructor que inicializa la posición del jugador y el nivel en el que se encuentra.
+     * la entrada de acciones del jugador y el tiempo de invulnerabilidad del jugador.
+     * @param pos La posición inicial del jugador.
+     * @param level El nivel en el que se encuentra el jugador.
+     */
     public Player(Point2D pos, Level level) {
         super(pos);
         this.level = level;
@@ -28,6 +38,10 @@ public class Player extends Character {
         this.invulnerabilityTimer = 0.0;
     }
 
+    /**
+     * Método para actualizar el estado del jugador en cada fotograma del juego.
+     * @param delta El tiempo transcurrido desde el último fotograma, en segundos.
+     */
     @Override
     public void update(double delta) {
         boolean up = inputHandler.getInput(InputOrder.UP).pressed;
@@ -36,7 +50,7 @@ public class Player extends Character {
         boolean right = inputHandler.getInput(InputOrder.RIGHT).pressed;
         boolean bomb = inputHandler.getInput(InputOrder.BOMB).pressed;
 
-        // Invulnerability del player
+        // Invulnerabilidad del jugador
         if (invulnerable) {
             invulnerabilityTimer -= delta;
             if (invulnerabilityTimer <= 0) {
@@ -44,7 +58,7 @@ public class Player extends Character {
             }
         }
 
-        // Movement
+        // Movimiento del jugador
         double x = (left) ? -1.0 : (right) ? 1.0 : 0;
         double y = (up) ? -1.0 : (down) ? 1.0 : 0;
         dir = new Point2D(x, y).normalize();
@@ -54,13 +68,13 @@ public class Player extends Character {
             facing = new Point2D(dir.getX(), dir.getY());
         }
 
-        // Wall Collisions
+        // Colisiones con paredes
         collRect = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
         vel = level.collideAndMove(collRect);
         if (vel != Point2D.ZERO)
             pos = pos.subtract(vel.normalize().multiply(delta * speed));
 
-        // Bomb handling
+        // Manejo de bombas
         Point2D facingPoint = facing.multiply(32).add(pos.add(SIZE / 2, SIZE / 2));
         bombTimer -= delta;
         if (bomb && bombTimer <= 0) {
@@ -71,6 +85,10 @@ public class Player extends Character {
         }
     }
 
+    /**
+     * Método para dibujar al jugador en el contexto gráfico dado.
+     * @param gContext El contexto gráfico en el que se dibujará el jugador.
+     */
     @Override
     public void draw(GraphicsContext gContext) {
         Color c = Color.ORANGE;
@@ -85,7 +103,7 @@ public class Player extends Character {
         gContext.setLineWidth(1);
         gContext.stroke();
 
-        // Facing debug
+        // Debug de dirección
         Point2D center = pos.add(SIZE / 2.0, SIZE / 2.0);
         gContext.beginPath();
         gContext.moveTo(center.getX(), center.getY());
@@ -96,6 +114,10 @@ public class Player extends Character {
         gContext.stroke();
     }
 
+    /**
+     * Método para manejar el daño recibido por el jugador.
+     * Si el jugador no está invulnerable, pierde una vida y se vuelve invulnerable temporalmente.
+     */
     public void handleDamage() {
         if (!invulnerable) {
             lives--;
@@ -106,29 +128,52 @@ public class Player extends Character {
         }
     }
 
+    /**
+     * Método para agregar una vida extra al jugador.
+     */
     public void addLife() {
         lives++;
         System.out.println("¡Vida extra otorgada! Vidas restantes: " + lives);
     }
 
+    /**
+     * Método para activar la invulnerabilidad del jugador durante un tiempo específico.
+     * @param duration La duración de la invulnerabilidad, en segundos.
+     */
     public void activateInvulnerability(double duration) {
         invulnerable = true;
         invulnerabilityDuration = duration;
         invulnerabilityTimer = duration;
     }
 
+    /**
+     * Método para manejar el evento de presionar una tecla por parte del jugador.
+     * @param event El evento de teclado asociado a la tecla presionada.
+     */
     public void handleKeyPress(KeyEvent event) {
         inputHandler.inputPressed(event.getCode());
     }
 
+    /**
+     * Método para manejar el evento de soltar una tecla por parte del jugador.
+     * @param event El evento de teclado asociado a la tecla soltada.
+     */
     public void handleKeyRelease(KeyEvent event) {
         inputHandler.inputReleased(event.getCode());
     }
 
+    /**
+     * Método para verificar si el jugador ha perdido todas sus vidas.
+     * @return true si el jugador ha perdido todas sus vidas, de lo contrario false.
+     */
     public boolean isDead() {
         return lives <= 0;
     }
 
+    /**
+     * Método para obtener el rectángulo de colisión del jugador.
+     * @return El rectángulo de colisión del jugador.
+     */
     public Rectangle getCollRect() {
         return collRect;
     }
