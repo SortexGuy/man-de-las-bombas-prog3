@@ -301,12 +301,12 @@
       </AnchorPane>
       <VBox layoutX="721.0" layoutY="380.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
          <children>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#OnHelpButtonClicked" prefHeight="62.0" prefWidth="186.0" style="-fx-text-alignment: JUSTIFY; -fx-alignment: CENTER_LEFT; -fx-background-insets: 4; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 4; -fx-border-radius: 20;">
+            <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#OnHelpButtonClicked" prefHeight="60.0" prefWidth="186.0" style="-fx-text-alignment: JUSTIFY; -fx-alignment: CENTER_LEFT; -fx-background-insets: 4; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 4; -fx-border-radius: 20;">
                <font>
                   <Font name="Bomberman" size="20.0" />
                </font>
                <padding>
-                  <Insets bottom="16.0" left="30.0" right="30.0" top="16.0" />
+                  <Insets bottom="12.0" left="30.0" right="30.0" top="12.0" />
                </padding>
                <graphic>
                   <Text stroke="#3652c7" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Ayuda" textAlignment="CENTER" wrappingWidth="166.13674926757812">
@@ -345,12 +345,12 @@
                   <Insets bottom="4.0" top="4.0" />
                </VBox.margin>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#OnCreditsButtonClicked" prefHeight="62.0" prefWidth="186.0" style="-fx-text-alignment: JUSTIFY; -fx-alignment: CENTER_LEFT; -fx-background-insets: 4; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 4; -fx-border-radius: 20;">
+            <Button maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#OnCreditsButtonClicked" prefHeight="60.0" prefWidth="186.0" style="-fx-text-alignment: JUSTIFY; -fx-alignment: CENTER_LEFT; -fx-background-insets: 4; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 4; -fx-border-radius: 20;">
                <font>
                   <Font name="Bomberman" size="20.0" />
                </font>
                <padding>
-                  <Insets bottom="16.0" left="30.0" right="30.0" top="16.0" />
+                  <Insets bottom="12.0" left="30.0" right="30.0" top="12.0" />
                </padding>
                <graphic>
                   <Text stroke="#3652c7" strokeType="OUTSIDE" strokeWidth="0.0" text="Creditos" textAlignment="CENTER" wrappingWidth="166.13674926757812">
