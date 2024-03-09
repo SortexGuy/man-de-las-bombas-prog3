@@ -111,6 +111,12 @@ public class Player extends Character {
         System.out.println("¡Vida extra otorgada! Vidas restantes: " + lives);
     }
 
+    public void activateInvulnerability(double duration) {
+        invulnerable = true;
+        invulnerabilityDuration = duration;
+        invulnerabilityTimer = duration;
+    }
+
     public void handleKeyPress(KeyEvent event) {
         inputHandler.inputPressed(event.getCode());
     }

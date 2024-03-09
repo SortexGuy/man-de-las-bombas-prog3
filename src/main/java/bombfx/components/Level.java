@@ -94,7 +94,7 @@ public class Level extends Object {
                         cell = new NewLifeItem(cell.getPos(), player, this);
                         break;
                     case 1:
-                        cell = new NewLifeItem(cell.getPos(), player, this);
+                        cell = new InvulnerabilityItem(cell.getPos(), player, this);
                         break;
                     case 2:
                         cell = new NewLifeItem(cell.getPos(), player, this);
