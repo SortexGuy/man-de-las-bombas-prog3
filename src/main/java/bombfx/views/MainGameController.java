@@ -3,13 +3,17 @@ package bombfx.views;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import bombfx.App;
 import bombfx.components.Enemy; //cambio joey
@@ -18,8 +22,12 @@ import bombfx.components.Player;
 import bombfx.engine.GameLoop;
 
 public class MainGameController implements Initializable {
-    @FXML // fx:id="gameCanvas"
-    private Canvas gameCanvas; // Value injected by FXMLLoader
+    @FXML                          // fx:id="resultPane"
+    private AnchorPane resultPane; // Value injected by FXMLLoader
+    @FXML                          // fx:id="resultText"
+    private Text resultText;       // Value injected by FXMLLoader
+    @FXML                          // fx:id="gameCanvas"
+    private Canvas gameCanvas;     // Value injected by FXMLLoader
     private GraphicsContext gContext;
 
     private GameLoop gameLoop;
@@ -63,12 +71,8 @@ public class MainGameController implements Initializable {
         level.setEnemies(enemies);
 
         // Input events
-        App.getScene().addEventHandler(KeyEvent.KEY_PRESSED, e -> {
-            player.handleKeyPress(e);
-        });
-        App.getScene().addEventHandler(KeyEvent.KEY_RELEASED, e -> {
-            player.handleKeyRelease(e);
-        });
+        App.getScene().addEventHandler(KeyEvent.KEY_PRESSED, e -> { player.handleKeyPress(e); });
+        App.getScene().addEventHandler(KeyEvent.KEY_RELEASED, e -> { player.handleKeyRelease(e); });
         gameLoop.start();
     }
 
@@ -100,5 +104,10 @@ public class MainGameController implements Initializable {
 
         player.draw(gContext);
         enemies.forEach(enemy -> enemy.draw(gContext));
+    }
+
+    @FXML
+    void onBackButtonClicked(ActionEvent event) {
+        App.setRoot("views/MainMenuUI");
     }
 }
