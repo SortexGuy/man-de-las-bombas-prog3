@@ -7,12 +7,14 @@ import javafx.scene.shape.Rectangle;
 
 /**
  * Clase que representa una celda de bloque en un entorno de juego.
- * Las celdas de bloque (rompibles) son obstáculos que bloquean el paso de otros elementos del juego.
+ * Las celdas de bloque (rompibles) son obstáculos que bloquean el paso de otros
+ * elementos del juego.
  */
 public class BlockCell extends Cell {
-
     /**
-     * Constructor que inicializa la posición y el rectángulo de colisión de la celda de bloque.
+     * Constructor que inicializa la posición y el rectángulo de colisión de la
+     * celda de bloque.
+     *
      * @param pos La posición inicial de la celda de bloque.
      */
     public BlockCell(Point2D pos) {
@@ -21,7 +23,9 @@ public class BlockCell extends Cell {
     }
 
     /**
-     * Método para actualizar el estado de la celda de bloque. No realiza ninguna acción en este caso.
+     * Método para actualizar el estado de la celda de bloque. No realiza ninguna
+     * acción en este caso.
+     *
      * @param delta El tiempo transcurrido desde el último fotograma, en segundos.
      */
     @Override
@@ -30,6 +34,7 @@ public class BlockCell extends Cell {
 
     /**
      * Método para dibujar la celda de bloque en el contexto gráfico dado.
+     *
      * @param gContext El contexto gráfico en el que se dibujará la celda de bloque.
      */
     @Override
@@ -47,8 +52,10 @@ public class BlockCell extends Cell {
 
     /**
      * Método para verificar si la celda de bloque colisiona con un rectángulo dado.
+     *
      * @param rect El rectángulo con el que se comprueba la colisión.
-     * @return true si la celda de bloque colisiona con el rectángulo dado, de lo contrario false.
+     * @return true si la celda de bloque colisiona con el rectángulo dado, de lo
+     *         contrario false.
      */
     @Override
     public boolean collide(Rectangle rect) {

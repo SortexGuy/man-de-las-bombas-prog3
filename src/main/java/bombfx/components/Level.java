@@ -7,7 +7,8 @@ import javafx.scene.shape.Rectangle;
 
 /**
  * Clase que representa un nivel en el juego.
- * Un nivel consiste en una matriz de celdas que forman el entorno del juego, junto con el jugador y los enemigos presentes en el nivel.
+ * Un nivel consiste en una matriz de celdas que forman el entorno del juego,
+ * junto con el jugador y los enemigos presentes en el nivel.
  */
 public class Level extends Object {
     private final int GRID_SIZE = 32;
@@ -18,7 +19,8 @@ public class Level extends Object {
 
     /**
      * Constructor de la clase Level.
-     * Inicializa el nivel creando una matriz de celdas con diferentes tipos de celdas, como celdas vacías, celdas de pared y celdas de bloque.
+     * Inicializa el nivel creando una matriz de celdas con diferentes tipos de
+     * celdas, como celdas vacías, celdas de pared y celdas de bloque.
      * Además, inicializa las posiciones del jugador y los enemigos en el nivel.
      */
     public Level() {
@@ -42,7 +44,9 @@ public class Level extends Object {
 
     /**
      * Método para actualizar el estado del nivel en cada fotograma del juego.
-     * Llama al método `update` de todas las celdas en el nivel para que actualicen su estado.
+     * Llama al método `update` de todas las celdas en el nivel para que actualicen
+     * su estado.
+     *
      * @param delta El tiempo transcurrido desde el último fotograma, en segundos.
      */
     public void update(double delta) {
@@ -51,7 +55,9 @@ public class Level extends Object {
 
     /**
      * Método para dibujar el nivel en el contexto gráfico dado.
-     * Llama al método `draw` de todas las celdas en el nivel para que se dibujen en el contexto gráfico.
+     * Llama al método `draw` de todas las celdas en el nivel para que se dibujen en
+     * el contexto gráfico.
+     *
      * @param gContext El contexto gráfico en el que se dibujará el nivel.
      */
     public void draw(GraphicsContext gContext) {
@@ -59,8 +65,11 @@ public class Level extends Object {
     }
 
     /**
-     * Método para verificar si un punto dado colisiona con alguna celda en el nivel.
-     * Este método se utiliza para detectar colisiones del jugador con las celdas del nivel.
+     * Método para verificar si un punto dado colisiona con alguna celda en el
+     * nivel.
+     * Este método se utiliza para detectar colisiones del jugador con las celdas
+     * del nivel.
+     *
      * @param point El punto a verificar la colisión.
      * @return true si el punto colisiona con alguna celda, false en caso contrario.
      */
@@ -70,7 +79,9 @@ public class Level extends Object {
     }
 
     /**
-     * Método para calcular la dirección en la que mover un rectángulo para evitar colisiones con las celdas en el nivel.
+     * Método para calcular la dirección en la que mover un rectángulo para evitar
+     * colisiones con las celdas en el nivel.
+     *
      * @param rect El rectángulo que se moverá para evitar colisiones.
      * @return La dirección en la que mover el rectángulo para evitar colisiones.
      */
@@ -88,9 +99,12 @@ public class Level extends Object {
 
     /**
      * Verifica si el jugador está cerca de una posición dada en el nivel.
-     * Esto se usa para determinar si el jugador puede ser afectado por elementos cercanos en el juego.
+     * Esto se usa para determinar si el jugador puede ser afectado por elementos
+     * cercanos en el juego.
+     *
      * @param pos La posición a verificar.
-     * @return true si el jugador está cerca de la posición dada, false en caso contrario.
+     * @return true si el jugador está cerca de la posición dada, false en caso
+     *         contrario.
      */
     public boolean isPlayerNear(Point2D pos) {
         Point2D playerPos = new Point2D(46, 46); // player.getPos();
@@ -102,8 +116,10 @@ public class Level extends Object {
 
     /**
      * Agrega una bomba a la posición especificada en el nivel.
+     *
      * @param position La posición donde se agregará la bomba.
-     * @return true si se pudo agregar la bomba correctamente, false si la posición no es válida para colocar una bomba.
+     * @return true si se pudo agregar la bomba correctamente, false si la posición
+     *         no es válida para colocar una bomba.
      */
     public boolean addBomb(Point2D position) {
         for (int i = 0; i < cells.size(); i++) {
@@ -122,9 +138,10 @@ public class Level extends Object {
 
     /**
      * Elimina una bomba del nivel en una posición dada y su dirección.
+     *
      * @param position La posición de la bomba a eliminar.
-     * @param times  el tiempo de la explosion.
-     * @param dir La dirección de la explosión.
+     * @param times    el tiempo de la explosion.
+     * @param dir      La dirección de la explosión.
      */
     public void removeBomb(Point2D position, int times, Point2D dir) {
         for (int i = 0; i < cells.size(); i++) {
@@ -175,6 +192,7 @@ public class Level extends Object {
 
     /**
      * Elimina item del nivel en una posición dada.
+     *
      * @param position La posición del item a eliminar.
      */
     public void removeItem(Point2D position) {
@@ -191,6 +209,7 @@ public class Level extends Object {
 
     /**
      * Elimina las celdas de peligro del nivel en una posición dada.
+     *
      * @param position La posición del peligro a eliminar.
      */
     public void removeDanger(Point2D position) {
@@ -207,8 +226,10 @@ public class Level extends Object {
 
     /**
      * Verifica si una celda en una posición dada está vacía.
+     *
      * @param pos La posición a verificar.
-     * @return true si la celda en la posición dada está vacía, false en caso contrario.
+     * @return true si la celda en la posición dada está vacía, false en caso
+     *         contrario.
      */
     public boolean isEmptyCell(Point2D pos) {
         for (Cell cell : cells) {
@@ -221,6 +242,7 @@ public class Level extends Object {
 
     /**
      * Obtiene el tamaño del grid del nivel.
+     *
      * @return El tamaño del grid del nivel.
      */
     public int getGridSize() {
@@ -229,6 +251,7 @@ public class Level extends Object {
 
     /**
      * Establece el jugador en el nivel.
+     *
      * @param player El jugador a establecer en el nivel.
      */
     public void setPlayer(Player player) {
@@ -237,6 +260,7 @@ public class Level extends Object {
 
     /**
      * Establece la lista de enemigos en el nivel.
+     *
      * @param enemies La lista de enemigos a establecer en el nivel.
      */
     public void setEnemies(ArrayList<Enemy> enemies) {

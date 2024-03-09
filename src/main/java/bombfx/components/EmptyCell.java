@@ -7,12 +7,13 @@ import javafx.scene.shape.Rectangle;
 
 /**
  * Clase que representa una celda vacía en un entorno de juego.
- * Las celdas vacías no tienen ningún comportamiento especial y se utilizan principalmente como espacios vacíos en el juego.
+ * Las celdas vacías no tienen ningún comportamiento especial y se utilizan
+ * principalmente como espacios vacíos en el juego.
  */
 public class EmptyCell extends Cell {
-
     /**
      * Constructor que inicializa la posición de la celda vacía.
+     *
      * @param pos La posición inicial de la celda vacía.
      */
     public EmptyCell(Point2D pos) {
@@ -20,7 +21,9 @@ public class EmptyCell extends Cell {
     }
 
     /**
-     * Método para actualizar el estado de la celda vacía. No realiza ninguna acción en este caso.
+     * Método para actualizar el estado de la celda vacía. No realiza ninguna acción
+     * en este caso.
+     *
      * @param delta El tiempo transcurrido desde el último fotograma, en segundos.
      */
     @Override
@@ -29,6 +32,7 @@ public class EmptyCell extends Cell {
 
     /**
      * Método para dibujar la celda vacía en el contexto gráfico dado.
+     *
      * @param gContext El contexto gráfico en el que se dibujará la celda vacía.
      */
     @Override
@@ -45,12 +49,14 @@ public class EmptyCell extends Cell {
     }
 
     /**
-     * Método para verificar si la celda vacía colisiona con un rectángulo dado. Siempre devuelve falso ya que una celda vacía no puede colisionar.
+     * Método para verificar si la celda vacía colisiona con un rectángulo dado.
+     * Siempre devuelve falso ya que una celda vacía no puede colisionar.
+     *
      * @param rect El rectángulo con el que se comprueba la colisión.
      * @return Siempre devuelve falso ya que una celda vacía no puede colisionar.
      */
     @Override
     public boolean collide(Rectangle rect) {
-        return false;// Una celda vacía no puede colisionar
+        return false; // Una celda vacía no puede colisionar
     }
 }

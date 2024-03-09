@@ -8,12 +8,13 @@ import javafx.scene.shape.Shape;
 
 /**
  * Clase que representa una celda de pared en el juego.
- * Las celdas de pared son obstáculos que bloquean el movimiento de los personajes.
+ * Las celdas de pared son obstáculos que bloquean el movimiento de los
+ * personajes.
  */
 public class WallCell extends Cell {
-
     /**
      * Constructor que inicializa la posición de la celda de pared.
+     *
      * @param pos La posición inicial de la celda de pared.
      */
     public WallCell(Point2D pos) {
@@ -21,8 +22,11 @@ public class WallCell extends Cell {
     }
 
     /**
-     * Método para actualizar el estado de la celda de pared en cada fotograma del juego.
-     * No realiza ninguna operación ya que las celdas de pared no tienen comportamiento dinámico.
+     * Método para actualizar el estado de la celda de pared en cada fotograma del
+     * juego.
+     * No realiza ninguna operación ya que las celdas de pared no tienen
+     * comportamiento dinámico.
+     *
      * @param delta El tiempo transcurrido desde el último fotograma, en segundos.
      */
     @Override
@@ -31,6 +35,7 @@ public class WallCell extends Cell {
 
     /**
      * Método para dibujar la celda de pared en el contexto gráfico dado.
+     *
      * @param gContext El contexto gráfico en el que se dibujará la celda de pared.
      */
     @Override
@@ -47,9 +52,12 @@ public class WallCell extends Cell {
     }
 
     /**
-     * Método para verificar si la celda de pared se superpone con un rectángulo dado.
+     * Método para verificar si la celda de pared se superpone con un rectángulo
+     * dado.
+     *
      * @param rect El rectángulo con el que se verifica la superposición.
-     * @return true si la celda de pared se superpone con el rectángulo, de lo contrario false.
+     * @return true si la celda de pared se superpone con el rectángulo, de lo
+     *         contrario false.
      */
     @Override
     public boolean collide(Rectangle rect) {

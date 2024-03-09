@@ -8,20 +8,21 @@ import javafx.scene.shape.Rectangle;
 
 /**
  * Clase que representa a un enemigo en el juego.
- * Los enemigos son personajes controlados por la inteligencia artificial que atacan al jugador.
+ * Los enemigos son personajes controlados por la inteligencia artificial que
+ * atacan al jugador.
  */
 public class Enemy extends Character {
     private Player player;
     private Level level;
     private Random random;
     private Rectangle collRect;
-    private double changeDirTimer;// Temporizador para cambiar la dirección del enemigo
-
+    private double changeDirTimer; // Temporizador para cambiar la dirección del enemigo
 
     /**
      * Constructor que inicializa la posición del enemigo, el nivel y el jugador.
-     * @param pos La posición inicial del enemigo.
-     * @param level El nivel en el que se encuentra el enemigo.
+     *
+     * @param pos    La posición inicial del enemigo.
+     * @param level  El nivel en el que se encuentra el enemigo.
      * @param player El jugador al que el enemigo persigue.
      */
     public Enemy(Point2D pos, Level level, Player player) {
@@ -29,13 +30,15 @@ public class Enemy extends Character {
         this.level = level;
         this.random = new Random();
         this.player = player;
-        speed = 100;// Velocidad de movimiento del enemigo
-        changeDirTimer = 1.5;// Intervalo de tiempo para cambiar la dirección del enemigo
+        speed = 100;          // Velocidad de movimiento del enemigo
+        changeDirTimer = 1.5; // Intervalo de tiempo para cambiar la dirección del enemigo
     }
 
     /**
      * Método para actualizar el estado del enemigo en cada fotograma del juego.
-     * @param deltaTime El tiempo transcurrido desde el último fotograma, en segundos.
+     *
+     * @param deltaTime El tiempo transcurrido desde el último fotograma, en
+     *                  segundos.
      */
     public void update(double deltaTime) {
         changeDirTimer -= deltaTime;
@@ -67,6 +70,7 @@ public class Enemy extends Character {
 
     /**
      * Método para dibujar al enemigo en el contexto gráfico dado.
+     *
      * @param gContext El contexto gráfico en el que se dibujará el enemigo.
      */
     public void draw(GraphicsContext gContext) {
@@ -107,6 +111,7 @@ public class Enemy extends Character {
 
     /**
      * Método privado para verificar si el enemigo está tocando al jugador.
+     *
      * @return true si el enemigo está tocando al jugador, de lo contrario false.
      */
     private boolean isTouchingPlayer() {
@@ -117,6 +122,7 @@ public class Enemy extends Character {
 
     /**
      * Método para obtener el rectángulo de colisión del enemigo.
+     *
      * @return El rectángulo de colisión del enemigo.
      */
     public Rectangle getCollRect() {

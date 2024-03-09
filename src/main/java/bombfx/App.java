@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -43,10 +44,12 @@ public class App extends Application {
 
         // Configurar propiedades de la ventana principal
         stage.setTitle("Man de las Bombas FX"); // Titulo de la ventana
-        stage.setFullScreen(false); // Desactivar pantalla completa
-        stage.setMaximized(false); // Desactivar maximizar
-        stage.setResizable(false); // Desactivar redimensionar
-        stage.centerOnScreen(); // Centrar la ventana en la pantalla
+        stage.setFullScreen(false);             // Desactivar pantalla completa
+        stage.setMaximized(false);              // Desactivar maximizar
+        stage.setResizable(false);              // Desactivar redimensionar
+        stage.centerOnScreen();                 // Centrar la ventana en la pantalla
+        stage.getIcons().add(new Image(         // Añadimos un icono a la ventana
+                App.class.getResourceAsStream("icon-bomb.png")));
 
         // Establecer la escena en la ventana principal y mostrarla
         stage.setScene(scene);

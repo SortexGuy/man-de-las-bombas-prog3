@@ -6,13 +6,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
- * Representa un ítem en el juego que otorga al jugador más poder para sus bombas.
- * Cuando el jugador lo recoge, incrementa el radio de la explotación de la bomba.
+ * Representa un ítem en el juego que otorga al jugador más poder para sus
+ * bombas.
+ * Cuando el jugador lo recoge, incrementa el radio de la explotación de la
+ * bomba.
  */
 public class BombPowerItem extends ItemCell {
-
     /**
-     * Representa un ítem en el juego que otorga al jugador más poder para sus bombas.
+     * Representa un ítem en el juego que otorga al jugador más poder para sus
+     * bombas.
      * Cuando el jugador lo recoge, su poder de bomba se incrementa.
      */
     public BombPowerItem(Point2D pos, Player player, Level level) {
@@ -21,8 +23,11 @@ public class BombPowerItem extends ItemCell {
     }
 
     /**
-     * Método para actualizar el estado del ítem de BombPowerItem en cada fotograma del juego.
-     * Si el jugador entra en contacto con el elemento, se incrementa el radio de la explotación de bombas y el elemento desaparece del nivel.
+     * Método para actualizar el estado del ítem de BombPowerItem en cada fotograma
+     * del juego.
+     * Si el jugador entra en contacto con el elemento, se incrementa el radio de la
+     * explotación de bombas y el elemento desaparece del nivel.
+     *
      * @param delta El tiempo transcurrido desde la última actualización.
      */
     @Override
@@ -36,7 +41,9 @@ public class BombPowerItem extends ItemCell {
 
     /**
      * Método para dibujar el ítem de BombPowerItem en el contexto gráfico dado.
-     * @param gContext El contexto gráfico en el que se dibujará el ítem de BombPowerItem.
+     *
+     * @param gContext El contexto gráfico en el que se dibujará el ítem de
+     *                 BombPowerItem.
      */
     @Override
     public void draw(GraphicsContext gContext) {

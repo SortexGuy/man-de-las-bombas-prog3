@@ -7,15 +7,17 @@ import javafx.scene.shape.Rectangle;
 
 /**
  * Clase que representa un ítem de vida nueva en el juego.
- * Los ítems de vida nueva otorgan al jugador una vida extra cuando son recogidos.
+ * Los ítems de vida nueva otorgan al jugador una vida extra cuando son
+ * recogidos.
  */
 public class NewLifeItem extends ItemCell {
-
     /**
-     * Constructor que inicializa la posición del ítem de vida nueva, el jugador y el nivel.
-     * @param pos La posición inicial del ítem de vida nueva.
+     * Constructor que inicializa la posición del ítem de vida nueva, el jugador y
+     * el nivel.
+     *
+     * @param pos    La posición inicial del ítem de vida nueva.
      * @param player El jugador que puede recoger el ítem de vida nueva.
-     * @param level El nivel en el que se encuentra el ítem de vida nueva.
+     * @param level  El nivel en el que se encuentra el ítem de vida nueva.
      */
     public NewLifeItem(Point2D pos, Player player, Level level) {
         super(pos, player, level);
@@ -23,9 +25,12 @@ public class NewLifeItem extends ItemCell {
     }
 
     /**
-     * Método para actualizar el estado del ítem de vida nueva en cada fotograma del juego.
-     * Si el jugador se superpone con el ítem de vida nueva, se agrega una vida extra al jugador.
+     * Método para actualizar el estado del ítem de vida nueva en cada fotograma del
+     * juego.
+     * Si el jugador se superpone con el ítem de vida nueva, se agrega una vida
+     * extra al jugador.
      * Además, se elimina el ítem de vida nueva del nivel.
+     *
      * @param delta El tiempo transcurrido desde el último fotograma, en segundos.
      */
     @Override
@@ -39,7 +44,9 @@ public class NewLifeItem extends ItemCell {
 
     /**
      * Método para dibujar el ítem de vida nueva en el contexto gráfico dado.
-     * @param gContext El contexto gráfico en el que se dibujará el ítem de vida nueva.
+     *
+     * @param gContext El contexto gráfico en el que se dibujará el ítem de vida
+     *                 nueva.
      */
     @Override
     public void draw(GraphicsContext gContext) {
@@ -55,5 +62,4 @@ public class NewLifeItem extends ItemCell {
         gContext.setLineWidth(1);
         gContext.stroke();
     }
-
 }

@@ -4,7 +4,8 @@ import javafx.animation.AnimationTimer;
 
 /**
  * Clase abstracta para manejar el bucle de juego.
- * Extiende AnimationTimer, que es un temporizador que proporciona una API de alto nivel para
+ * Extiende AnimationTimer, que es un temporizador que proporciona una API de
+ * alto nivel para
  * la animación de la aplicación.
  */
 public abstract class GameLoop extends AnimationTimer {
@@ -27,7 +28,9 @@ public abstract class GameLoop extends AnimationTimer {
 
     /**
      * Método de callback invocado en cada fotograma del juego.
-     * Calcula el tiempo transcurrido entre fotogramas y llama al método tick del juego.
+     * Calcula el tiempo transcurrido entre fotogramas y llama al método tick del
+     * juego.
+     *
      * @param nowNano El tiempo actual en nanosegundos.
      */
     @Override
@@ -37,11 +40,13 @@ public abstract class GameLoop extends AnimationTimer {
             return;
         }
 
-        long deltaNano = nowNano - lastNano;// Tiempo transcurrido entre fotogramas en nanosegundos
-        double deltaS = ((double) deltaNano) / 1_000_000_000.0;// Tiempo transcurrido entre fotogramas en segundos
+        long deltaNano = nowNano - lastNano; // Tiempo transcurrido entre fotogramas en nanosegundos
+        double deltaS = ((double) deltaNano)
+                / 1_000_000_000.0; // Tiempo transcurrido entre fotogramas en segundos
         lastNano = nowNano;
 
-        double tickDur = 1 / 30.0; // Duración objetivo de cada "tick" del juego (30 ticks por segundo)
+        double tickDur =
+                1 / 30.0; // Duración objetivo de cada "tick" del juego (30 ticks por segundo)
         timeToTick += deltaS;
 
         // Verifica si es el momento de ejecutar una "tick" del juego
@@ -67,9 +72,12 @@ public abstract class GameLoop extends AnimationTimer {
     }
 
     /**
-     * Método abstracto que debe ser implementado por las subclases para realizar las actualizaciones
+     * Método abstracto que debe ser implementado por las subclases para realizar
+     * las actualizaciones
      * del juego en cada fotograma.
-     * @param deltaTime El tiempo transcurrido desde el último fotograma en segundos.
+     *
+     * @param deltaTime El tiempo transcurrido desde el último fotograma en
+     *                  segundos.
      */
     public abstract void tick(double deltaTime);
 

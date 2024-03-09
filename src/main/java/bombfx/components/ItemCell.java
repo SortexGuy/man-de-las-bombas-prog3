@@ -14,10 +14,12 @@ public class ItemCell extends EmptyCell {
     protected Level level;
 
     /**
-     * Constructor que inicializa la posición de la celda de objeto, el jugador y el nivel.
-     * @param pos La posición inicial de la celda de objeto.
+     * Constructor que inicializa la posición de la celda de objeto, el jugador y el
+     * nivel.
+     *
+     * @param pos    La posición inicial de la celda de objeto.
      * @param player El jugador que puede recoger el ítem de esta celda.
-     * @param level El nivel en el que se encuentra la celda de objeto.
+     * @param level  El nivel en el que se encuentra la celda de objeto.
      */
     public ItemCell(Point2D pos, Player player, Level level) {
         super(pos);
@@ -27,8 +29,11 @@ public class ItemCell extends EmptyCell {
     }
 
     /**
-     * Método para actualizar el estado de la celda de objeto en cada fotograma del juego.
-     * No realiza ninguna operación ya que las celdas de objeto no tienen comportamiento dinámico.
+     * Método para actualizar el estado de la celda de objeto en cada fotograma del
+     * juego.
+     * No realiza ninguna operación ya que las celdas de objeto no tienen
+     * comportamiento dinámico.
+     *
      * @param delta El tiempo transcurrido desde el último fotograma, en segundos.
      */
     @Override
@@ -37,16 +42,19 @@ public class ItemCell extends EmptyCell {
 
     /**
      * Método para dibujar la celda de objeto en el contexto gráfico dado.
+     *
      * @param gContext El contexto gráfico en el que se dibujará la celda de objeto.
      */
     @Override
     public void draw(GraphicsContext gContext) {
-        super.draw(gContext);// Se delega el dibujo al método draw de la clase padre EmptyCell
+        super.draw(gContext); // Se delega el dibujo al método draw de la clase padre EmptyCell
     }
 
     /**
-     * Método para verificar si la celda de objeto se superpone con un rectángulo dado.
+     * Método para verificar si la celda de objeto se superpone con un rectángulo
+     * dado.
      * Las celdas de objeto no tienen colisión con otros objetos.
+     *
      * @param rect El rectángulo con el que se verifica la superposición.
      * @return false siempre, ya que las celdas de objeto no tienen colisión.
      */

@@ -6,7 +6,6 @@ import javafx.scene.input.KeyCode;
  * Clase para manejar las entradas del usuario en el juego.
  */
 public class InputHandler {
-
     /**
      * Clase interna que representa una entrada de teclado.
      */
@@ -15,7 +14,9 @@ public class InputHandler {
         public Boolean pressed = false;
 
         /**
-         * Constructor para inicializar una entrada de teclado con el código de tecla proporcionado.
+         * Constructor para inicializar una entrada de teclado con el código de tecla
+         * proporcionado.
+         *
          * @param kCode El código de la tecla.
          */
         public Input(KeyCode kCode) {
@@ -55,6 +56,7 @@ public class InputHandler {
 
     /**
      * Método para manejar el evento de tecla presionada.
+     *
      * @param kCode El código de la tecla que se presionó.
      */
     public void inputPressed(KeyCode kCode) {
@@ -69,6 +71,7 @@ public class InputHandler {
 
     /**
      * Método para manejar el evento de tecla liberada.
+     *
      * @param kCode El código de la tecla que se liberó.
      */
     public void inputReleased(KeyCode kCode) {
@@ -83,6 +86,7 @@ public class InputHandler {
 
     /**
      * Obtiene la entrada de teclado para un orden específico.
+     *
      * @param action El orden de la entrada.
      * @return La entrada de teclado asociada al orden especificado.
      */
