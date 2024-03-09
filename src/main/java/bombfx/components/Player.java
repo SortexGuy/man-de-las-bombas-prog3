@@ -14,6 +14,7 @@ public class Player extends Character {
     private InputHandler inputHandler;
     private int lives = 3;
     private double bombTimer = 0;
+    private Rectangle collRect;
     private boolean invulnerable;
     private double invulnerabilityDuration;
     private double invulnerabilityTimer;
@@ -23,7 +24,7 @@ public class Player extends Character {
         this.level = level;
         this.inputHandler = new InputHandler();
         this.invulnerable = false;
-        this.invulnerabilityDuration = 1.0; 
+        this.invulnerabilityDuration = 1.0;
         this.invulnerabilityTimer = 0.0;
     }
 
@@ -47,8 +48,6 @@ public class Player extends Character {
         double x = (left) ? -1.0 : (right) ? 1.0 : 0;
         double y = (up) ? -1.0 : (down) ? 1.0 : 0;
         dir = new Point2D(x, y).normalize();
-        // lastDir = dir;
-        // lastDelta = delta;
         Point2D vel = dir.multiply(delta * speed);
         pos = pos.add(vel);
         if (dir.magnitude() > 0.5 && (dir.getX() == 0 || dir.getY() == 0)) {
@@ -56,7 +55,7 @@ public class Player extends Character {
         }
 
         // Wall Collisions
-        Rectangle collRect = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
+        collRect = new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
         vel = level.collideAndMove(collRect);
         if (vel != Point2D.ZERO)
             pos = pos.subtract(vel.normalize().multiply(delta * speed));
@@ -65,14 +64,18 @@ public class Player extends Character {
         Point2D facingPoint = facing.multiply(32).add(pos.add(SIZE / 2, SIZE / 2));
         bombTimer -= delta;
         if (bomb && bombTimer <= 0) {
-            level.addBomb(facingPoint);
-            bombTimer = 0.5;
+            if (level.addBomb(facingPoint))
+                bombTimer = 0.5;
+            else
+                bombTimer = 0.1;
         }
     }
 
     @Override
     public void draw(GraphicsContext gContext) {
         Color c = Color.ORANGE;
+        if (invulnerable)
+            c = Color.CYAN;
         gContext.setFill(c);
         gContext.beginPath();
         gContext.rect(pos.getX(), pos.getY(), SIZE, SIZE);
@@ -93,18 +96,6 @@ public class Player extends Character {
         gContext.stroke();
     }
 
-    public void handleKeyPress(KeyEvent event) {
-        inputHandler.inputPressed(event.getCode());
-    }
-
-    public void handleKeyRelease(KeyEvent event) {
-        inputHandler.inputReleased(event.getCode());
-    }
-
-    public Rectangle getBounds() {
-        return new Rectangle(pos.getX(), pos.getY(), SIZE, SIZE);
-    }
-
     public void handleDamage() {
         if (!invulnerable) {
             lives--;
@@ -113,5 +104,21 @@ public class Player extends Character {
             invulnerable = true;
             invulnerabilityTimer = invulnerabilityDuration;
         }
+    }
+
+    public void handleKeyPress(KeyEvent event) {
+        inputHandler.inputPressed(event.getCode());
+    }
+
+    public void handleKeyRelease(KeyEvent event) {
+        inputHandler.inputReleased(event.getCode());
+    }
+
+    public boolean isDead() {
+        return lives <= 0;
+    }
+
+    public Rectangle getCollRect() {
+        return collRect;
     }
 }
