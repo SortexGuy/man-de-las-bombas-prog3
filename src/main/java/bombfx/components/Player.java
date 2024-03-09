@@ -11,23 +11,29 @@ import bombfx.engine.InputHandler.InputOrder;
 
 /**
  * Clase que representa al jugador en el juego.
- * El jugador puede moverse por el nivel, colocar bombas y tiene una cantidad limitada de vidas.
+ * El jugador puede moverse por el nivel, colocar bombas y tiene una cantidad
+ * limitada de vidas.
  */
 public class Player extends Character {
     private Level level;
-    private InputHandler inputHandler;// Manejador de entrada para controlar las acciones del jugador
+    private InputHandler
+            inputHandler; // Manejador de entrada para controlar las acciones del jugador
     private int lives = 3;
     private int bombPower = 1;
-    private double bombTimer = 0;// Temporizador para limitar la frecuencia de colocación de bombas
+    private double bombTimer = 0; // Temporizador para limitar la frecuencia de colocación de bombas
     private Rectangle collRect;
-    private boolean invulnerable;// Indica si el jugador está temporalmente invulnerable
-    private double invulnerabilityDuration;// Duración de la invulnerabilidad del jugador
-    private double invulnerabilityTimer;// Temporizador para controlar la duración de la invulnerabilidad
+    private boolean invulnerable;           // Indica si el jugador está temporalmente invulnerable
+    private double invulnerabilityDuration; // Duración de la invulnerabilidad del jugador
+    private double
+            invulnerabilityTimer; // Temporizador para controlar la duración de la invulnerabilidad
 
     /**
-     * Constructor que inicializa la posición del jugador y el nivel en el que se encuentra.
-     * la entrada de acciones del jugador y el tiempo de invulnerabilidad del jugador.
-     * @param pos La posición inicial del jugador.
+     * Constructor que inicializa la posición del jugador y el nivel en el que se
+     * encuentra.
+     * la entrada de acciones del jugador y el tiempo de invulnerabilidad del
+     * jugador.
+     *
+     * @param pos   La posición inicial del jugador.
      * @param level El nivel en el que se encuentra el jugador.
      */
     public Player(Point2D pos, Level level) {
@@ -41,6 +47,7 @@ public class Player extends Character {
 
     /**
      * Método para actualizar el estado del jugador en cada fotograma del juego.
+     *
      * @param delta El tiempo transcurrido desde el último fotograma, en segundos.
      */
     @Override
@@ -88,6 +95,7 @@ public class Player extends Character {
 
     /**
      * Método para dibujar al jugador en el contexto gráfico dado.
+     *
      * @param gContext El contexto gráfico en el que se dibujará el jugador.
      */
     @Override
@@ -105,10 +113,12 @@ public class Player extends Character {
         gContext.stroke();
 
         // Debug de dirección
-        Point2D center = pos.add(SIZE / 2.0, SIZE / 2.0);
+        int halfSize = SIZE / 2;
+        Point2D center = pos.add(halfSize, halfSize);
         gContext.beginPath();
         gContext.moveTo(center.getX(), center.getY());
-        gContext.lineTo(center.getX() + facing.getX() * 32.0, center.getY() + facing.getY() * 32.0);
+        gContext.lineTo(
+                center.getX() + facing.getX() * halfSize, center.getY() + facing.getY() * halfSize);
         gContext.closePath();
         gContext.setStroke(Color.BLACK);
         gContext.setLineWidth(4);
@@ -117,12 +127,12 @@ public class Player extends Character {
 
     /**
      * Método para manejar el daño recibido por el jugador.
-     * Si el jugador no está invulnerable, pierde una vida y se vuelve invulnerable temporalmente.
+     * Si el jugador no está invulnerable, pierde una vida y se vuelve invulnerable
+     * temporalmente.
      */
     public void handleDamage() {
         if (!invulnerable) {
             lives--;
-            System.out.println("¡El jugador ha sido golpeado! Vidas restantes: " + lives);
 
             invulnerable = true;
             invulnerabilityTimer = invulnerabilityDuration;
@@ -142,7 +152,9 @@ public class Player extends Character {
     }
 
     /**
-     * Método para activar la invulnerabilidad del jugador durante un tiempo específico.
+     * Método para activar la invulnerabilidad del jugador durante un tiempo
+     * específico.
+     *
      * @param duration La duración de la invulnerabilidad, en segundos.
      */
     public void activateInvulnerability(double duration) {
@@ -153,6 +165,7 @@ public class Player extends Character {
 
     /**
      * Método para manejar el evento de presionar una tecla por parte del jugador.
+     *
      * @param event El evento de teclado asociado a la tecla presionada.
      */
     public void handleKeyPress(KeyEvent event) {
@@ -161,6 +174,7 @@ public class Player extends Character {
 
     /**
      * Método para manejar el evento de soltar una tecla por parte del jugador.
+     *
      * @param event El evento de teclado asociado a la tecla soltada.
      */
     public void handleKeyRelease(KeyEvent event) {
@@ -169,6 +183,7 @@ public class Player extends Character {
 
     /**
      * Método para verificar si el jugador ha perdido todas sus vidas.
+     *
      * @return true si el jugador ha perdido todas sus vidas, de lo contrario false.
      */
     public boolean isDead() {
@@ -177,6 +192,7 @@ public class Player extends Character {
 
     /**
      * Método para obtener el rectángulo de colisión del jugador.
+     *
      * @return El rectángulo de colisión del jugador.
      */
     public Rectangle getCollRect() {

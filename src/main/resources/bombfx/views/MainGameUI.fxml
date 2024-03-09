@@ -43,7 +43,7 @@
             <Canvas fx:id="gameCanvas" height="416.0" width="416.0" />
          </children>
       </Pane>
-      <AnchorPane fx:id="resultPane" style="-fx-background-color: rgba(0,0,0,0.7);" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="resultPane" style="-fx-background-color: rgba(0,0,0,0.7);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" layoutY="91.0" maxWidth="1.7976931348623157E308" prefHeight="370.0" prefWidth="972.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="91.0">
                <children>
@@ -76,7 +76,7 @@
                            </fill>
                         </Text>
                         <Separator maxWidth="1.7976931348623157E308" prefHeight="57.0" prefWidth="456.0" visible="false" />
-                        <Button fx:id="backButton" defaultButton="true" mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="159.0" prefWidth="465.0" text="Volver al menu">
+                        <Button fx:id="backButton" defaultButton="true" mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="159.0" prefWidth="465.0" style="-fx-text-alignment: JUSTIFY; -fx-alignment: CENTER; -fx-background-insets: 4; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 4; -fx-border-radius: 20;" text="Volver al menu">
                            <font>
                               <Font name="Bomberman" size="40.0" />
                            </font>

@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -13,7 +14,8 @@ import bombfx.App;
 
 /**
  * Controlador para la vista del menú principal.
- * Gestiona la lógica y la interfaz de usuario de la pantalla de menú principal del juego.
+ * Gestiona la lógica y la interfaz de usuario de la pantalla de menú principal
+ * del juego.
  */
 public class MainMenuController implements Initializable {
     @FXML                           // fx:id="creditsPane"
@@ -22,6 +24,8 @@ public class MainMenuController implements Initializable {
     private AnchorPane helpPane;    // Value injected by FXMLLoader
     @FXML                           // fx:id="mainPane"
     private VBox mainPane;          // Value injected by FXMLLoader
+    @FXML                           // fx:id="nickField"
+    private TextField nickField;    // Value injected by FXMLLoader
     private boolean isHelpVisible = false;
     private boolean isCreditsVisible = false;
 
@@ -51,7 +55,7 @@ public class MainMenuController implements Initializable {
             mainPane.setVisible(true);
             mainPane.setDisable(false);
         }
-        isCreditsVisible = !isCreditsVisible;// Cambiar el estado de visibilidad de los créditos
+        isCreditsVisible = !isCreditsVisible; // Cambiar el estado de visibilidad de los créditos
     }
 
     /**
@@ -80,7 +84,7 @@ public class MainMenuController implements Initializable {
             mainPane.setVisible(true);
             mainPane.setDisable(false);
         }
-        isHelpVisible = !isHelpVisible;// Cambiar el estado de visibilidad de la ayuda
+        isHelpVisible = !isHelpVisible; // Cambiar el estado de visibilidad de la ayuda
     }
 
     /**
