@@ -15,9 +15,17 @@ public class Stats extends Object {
     private int wins;
     private int losses;
 
+    /**
+     * Creacion vacia de la clase
+     */
     public Stats() {
     }
 
+    /**
+     * Carga las estadísticas del usuario especificado por {@code nickname}
+     * si no existe, se crea el archivo y se inicializan los valores a 0
+     * si existe, se cargan los valores
+     */
     public void loadStats() {
         File file = new File(nickname + ".txt");
 
@@ -50,6 +58,10 @@ public class Stats extends Object {
         }
     }
 
+    /**
+     * Guarda las estadísticas del usuario especificado por {@code nickname}
+     * si existe, se sobrescribe el archivo
+     */
     public void saveStats() {
         File file = new File(nickname + ".txt");
 
@@ -78,18 +90,32 @@ public class Stats extends Object {
         }
     }
 
+    /**
+     * Añade uno más a la cantidad de partidas jugadas
+     */
     public void addGames() {
         games++;
     }
 
+    /**
+     * Añade uno más a la cantidad de partidas ganadas
+     */
     public void addWins() {
         wins++;
     }
 
+    /**
+     * Añade uno más a la cantidad de partidas perdidas
+     */
     public void addLosses() {
         losses++;
     }
 
+    /**
+     * Asignar el apodo del jugador a {@code nickname}
+     *
+     * @param nickname
+     */
     public void setNickname(String nickname) {
         this.nickname = nickname.toLowerCase();
     }
