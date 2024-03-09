@@ -21,24 +21,27 @@ import bombfx.components.Enemy; //cambio joey
 import bombfx.components.Level;
 import bombfx.components.Player;
 import bombfx.engine.GameLoop;
+import bombfx.engine.Stats;
 
 /**
  * Controlador para la vista principal del juego.
- * Controla la lógica del juego y la interfaz de usuario durante el juego principal.
+ * Controla la lógica del juego y la interfaz de usuario durante el juego
+ * principal.
  */
 public class MainGameController implements Initializable {
-    @FXML                          // fx:id="resultPane"
-    private AnchorPane resultPane; // Panel que muestra el resultado (victoria o derrota)
-    @FXML                          // fx:id="resultText"
-    private Text resultText;       // Texto que muestra el resultado (victoria o derrota
-    @FXML                          // fx:id="lifeLabel"
-    private Label lifeLabel;       // Label que muestra la cantidad de vidas
-    @FXML                          // fx:id="backButton"
-    private Button backButton;     // Botón para volver a la pantalla de inicio
-    @FXML                          // fx:id="gameCanvas"
-    private Canvas gameCanvas;     // Canvas utilizado para dibujar el juego
-    private GraphicsContext gContext;// Contexto gráfico para dibujar en el Canvas
+    @FXML                             // fx:id="resultPane"
+    private AnchorPane resultPane;    // Panel que muestra el resultado (victoria o derrota)
+    @FXML                             // fx:id="resultText"
+    private Text resultText;          // Texto que muestra el resultado (victoria o derrota
+    @FXML                             // fx:id="lifeLabel"
+    private Label lifeLabel;          // Label que muestra la cantidad de vidas
+    @FXML                             // fx:id="backButton"
+    private Button backButton;        // Botón para volver a la pantalla de inicio
+    @FXML                             // fx:id="gameCanvas"
+    private Canvas gameCanvas;        // Canvas utilizado para dibujar el juego
+    private GraphicsContext gContext; // Contexto gráfico para dibujar en el Canvas
 
+    private Stats stats;
     private GameLoop gameLoop;
     private Player player;
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
@@ -52,6 +55,7 @@ public class MainGameController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lifeLabel.setStyle("-fx-letter-spacing: 0.2em;");
+        stats = App.getStats();
 
         gContext = gameCanvas.getGraphicsContext2D();
 
@@ -65,7 +69,6 @@ public class MainGameController implements Initializable {
         };
         level = new Level();
         player = new Player(new Point2D(46, 46), level);
-
 
         // Generación de enemigos
         int numEnemies = (int) (Math.random() * 4) + 3;
@@ -98,7 +101,9 @@ public class MainGameController implements Initializable {
 
     /**
      * Actualiza la lógica del juego en cada fotograma.
-     * @param deltaTime El tiempo transcurrido desde el último fotograma en segundos.
+     *
+     * @param deltaTime El tiempo transcurrido desde el último fotograma en
+     *                  segundos.
      */
     private void update(double deltaTime) {
         level.update(deltaTime);
@@ -109,6 +114,7 @@ public class MainGameController implements Initializable {
         if (enemies.isEmpty()) {
             // Mostrar mensaje de victoria
             resultText.setText("GANASTE!");
+            stats.addWins();
             // Mostrar panel de Victoria
             gameLoop.stop();
             // resultText.setDisable(false);
@@ -118,6 +124,7 @@ public class MainGameController implements Initializable {
         }
         if (player.isDead()) {
             resultText.setText("PERDISTE!");
+            stats.addLosses();
             // Mostrar panel de Derrota
             gameLoop.stop();
             // resultText.setDisable(false);
@@ -131,7 +138,8 @@ public class MainGameController implements Initializable {
 
     /**
      * Dibuja el juego en el Canvas.
-     * @param width Ancho del Canvas.
+     *
+     * @param width  Ancho del Canvas.
      * @param height Alto del Canvas.
      */
     private void draw(double width, double height) {
@@ -149,6 +157,7 @@ public class MainGameController implements Initializable {
      */
     @FXML
     void onBackButtonClicked(ActionEvent event) {
-        App.setRoot("views/MainMenuUI");// Cambiar a la vista del menú principal
+        stats.saveStats();
+        App.setRoot("views/MainMenuUI"); // Cambiar a la vista del menú principal
     }
 }

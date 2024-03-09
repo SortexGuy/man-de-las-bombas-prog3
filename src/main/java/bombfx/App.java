@@ -16,8 +16,8 @@ import bombfx.engine.Stats;
  * Clase principal de la aplicación
  */
 public class App extends Application {
-    private static Scene scene;
     private static Stats stats;
+    private static Scene scene;
 
     /**
      * Inicia la aplicación JavaFX, configurando la escena principal y mostrando la
@@ -31,6 +31,9 @@ public class App extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
+        // Inicializar estadísticas
+        stats = new Stats();
+
         // Cargar la jerarquía de nodos desde un archivo FXML
         Parent hierarchy = App.loadFromFXML("views/MainMenuUI");
 

@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import bombfx.App;
+import bombfx.engine.Stats;
 
 /**
  * Controlador para la vista del menú principal.
@@ -26,8 +27,25 @@ public class MainMenuController implements Initializable {
     private VBox mainPane;          // Value injected by FXMLLoader
     @FXML                           // fx:id="nickField"
     private TextField nickField;    // Value injected by FXMLLoader
+    private Stats stats;
     private boolean isHelpVisible = false;
     private boolean isCreditsVisible = false;
+
+    /**
+     * Inicializa el controlador.
+     * Oculta los paneles de ayuda y créditos y muestra el panel principal.
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        stats = App.getStats();
+        helpPane.setVisible(false);
+        helpPane.setDisable(true);
+        creditsPane.setVisible(false);
+        creditsPane.setDisable(true);
+
+        mainPane.setVisible(true);
+        mainPane.setDisable(false);
+    }
 
     /**
      * Maneja el evento de clic en el botón de créditos.
@@ -102,21 +120,13 @@ public class MainMenuController implements Initializable {
      */
     @FXML
     void OnPlayButtonClicked(ActionEvent event) {
+        String nick = nickField.getText();
+        if (nick.isEmpty()) {
+            nick = nickField.getPromptText();
+        }
+        stats.setNickname(nick);
+        stats.loadStats();
+        stats.addGames();
         App.setRoot("views/MainGameUI");
-    }
-
-    /**
-     * Inicializa el controlador.
-     * Oculta los paneles de ayuda y créditos y muestra el panel principal.
-     */
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        helpPane.setVisible(false);
-        helpPane.setDisable(true);
-        creditsPane.setVisible(false);
-        creditsPane.setDisable(true);
-
-        mainPane.setVisible(true);
-        mainPane.setDisable(false);
     }
 }
